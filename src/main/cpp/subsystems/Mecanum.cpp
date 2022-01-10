@@ -65,7 +65,7 @@ void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t 
 
 void Mecanum::DriveJoystick(float lx, float ly, float rx)
 { // in degrees
-  Mecanum::Drive(units::meters_per_second_t{MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
+  Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
 }
 
 // counterclockwise, starting from the right. same as in math.
