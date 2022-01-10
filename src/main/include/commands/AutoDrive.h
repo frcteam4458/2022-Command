@@ -5,12 +5,13 @@
 
 #include "subsystems/Mecanum.h"
 
-class AutoDrive : public frc2::CommandHelper<frc2::CommandBase, Mecanum>
+class AutoDrive : public frc2::CommandHelper<frc2::CommandBase, AutoDrive>
 {
 public:
-    explicit AutoDrive(Mecanum *drive);
+    explicit AutoDrive(Mecanum* drive);
 
     void Initialize() override;
+    void Execute() override;
     bool IsFinished() override;
 
 private:

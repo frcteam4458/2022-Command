@@ -42,11 +42,9 @@ void Mecanum::Periodic()
   pose = m_odometry.Update(gyroAngle, wheelSpeeds);
 }
 
-void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::degrees_per_second_t omega)
+void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
-  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(units::meters_per_second_t(vx * MAX_SPEED), units::meters_per_second_t(vy * MAX_SPEED),
-                                                                          units::degrees_per_second_t(omega * MAX_ROT_SPEED),
-                                                                          frc::Rotation2d(units::degree_t(std::fmod(GetAngle(), 360.0f))));
+  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(GetAngleDegrees()));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   wheelSpeeds.Desaturate(MAX_SPEED);
   auto [sfl, sfr, sbl, sbr] = wheelSpeeds;
@@ -67,7 +65,7 @@ void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t 
 
 void Mecanum::DriveJoystick(float lx, float ly, float rx)
 { // in degrees
-  Mecanum::Drive(units::meters_per_second_t{MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::meters_per_second_t{rx * MAX_ROT_SPEED});
+  Mecanum::Drive(units::meters_per_second_t{MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
 }
 
 // counterclockwise, starting from the right. same as in math.
@@ -76,4 +74,13 @@ float Mecanum::GetAngle()
   float gyroAngle = gyro.GetAngle();
   gyroAngle = std::abs(std::fmod(-gyroAngle + 90, 360));
   return gyroAngle;
+}
+
+units::degree_t Mecanum::GetAngleDegrees()
+{
+  return units::degree_t{GetAngle()};
+}
+
+frc::Pose2d Mecanum::GetPose() {
+  return m_odometry.GetPose();
 }
