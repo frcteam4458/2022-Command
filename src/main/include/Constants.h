@@ -7,10 +7,20 @@ const int FRONT_RIGHT = 0;
 const int BACK_LEFT = 0;
 const int BACK_RIGHT = 0;
 
+const int FRONT_LEFT_ROT = 0;
+const int FRONT_RIGHT_ROT = 0;
+const int BACK_LEFT_ROT = 0;
+const int BACK_RIGHT_ROT = 0;
+
 const int FRONT_LEFT_ENCODER[] = {0, 0};
 const int FRONT_RIGHT_ENCODER[] = {0, 0};
 const int BACK_LEFT_ENCODER[] = {0, 0};
 const int BACK_RIGHT_ENCODER[] = {0, 0};
+
+const int FRONT_LEFT_ENCODER_ROT[] = {0, 0};
+const int FRONT_RIGHT_ENCODER_ROT[] = {0, 0};
+const int BACK_LEFT_ENCODER_ROT[] = {0, 0};
+const int BACK_RIGHT_ENCODER_ROT[] = {0, 0};
 
 const int GYRO = 0;
 

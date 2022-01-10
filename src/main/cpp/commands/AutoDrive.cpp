@@ -11,9 +11,9 @@ void AutoDrive::Initialize() {
 }
 
 void AutoDrive::Execute() {
-	m_drive->Drive(1_mps, 0_mps, units::radians_per_second_t(0.5f));
+	m_drive->Drive(0_mps, 1_mps, units::radians_per_second_t(0.5f));
 }
 
 bool AutoDrive::IsFinished() {
-	return m_drive->GetPose().X() >= 2_m;
+	return m_drive->GetPose().Y() >= 2_m;
 }
