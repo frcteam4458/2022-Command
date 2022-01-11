@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ROBOT_CONTAINER_H
+#define ROBOT_CONTAINER_H
 
 #include <frc2/command/Command.h>
 
@@ -21,3 +23,4 @@ private:
 
   void ConfigureButtonBindings();
 };
+#endif

@@ -1,4 +1,6 @@
 #pragma once
+#ifndef ROBOT_H
+#define ROBOT_H
 
 #include <frc/TimedRobot.h>
 #include <frc2/command/Command.h>
@@ -23,3 +25,4 @@ private:
 
   RobotContainer m_container;
 };
+#endif

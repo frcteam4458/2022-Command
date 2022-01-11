@@ -1,4 +1,6 @@
 #pragma once
+#ifndef INTAKE_H
+#define INTAKE_H
 
 #include <frc/motorcontrol/PWMSparkMax.h>
 
@@ -13,3 +15,4 @@ class Intake : public frc2::CommandHelper<frc2::CommandBase, Intake> {
     private:
         frc::PWMSparkMax intake;
 };
+#endif

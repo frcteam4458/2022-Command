@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MECANUM_H
+#define MECANUM_H
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
@@ -40,3 +42,4 @@ private:
 
   frc::Pose2d pose;
 };
+#endif
