@@ -24,4 +24,4 @@ frc::Translation2d BR{0_m, 0_m};
 units::meters_per_second_t MAX_SPEED{3.0f};
 units::radians_per_second_t MAX_ROT_SPEED{PI / 2.0f};
 
-units::meters_per_second_t ENCODER_DISTANCE_PER_PULSE{0.1f};
+units::meters_t ENCODER_DISTANCE_PER_PULSE{0.0f};
