@@ -81,6 +81,7 @@ units::degree_t Mecanum::GetAngleDegrees()
   return units::degree_t{GetAngle()};
 }
 
-frc::Pose2d Mecanum::GetPose() {
+frc::Pose2d Mecanum::GetPose()
+{
   return m_odometry.GetPose();
 }
