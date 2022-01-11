@@ -1,19 +1,20 @@
 #pragma once
 
+#include <frc/Joystick.h>
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 
 #include "subsystems/Mecanum.h"
 
-class AutoDrive : public frc2::CommandHelper<frc2::CommandBase, AutoDrive>
+class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive>
 {
 public:
-    explicit AutoDrive(Mecanum *drive);
+    explicit Drive(Mecanum *drive);
 
-    void Initialize() override;
     void Execute() override;
-    bool IsFinished() override;
 
 private:
     Mecanum *m_drive;
+    frc::Joystick leftStick{0};
+    frc::Joystick rightStick{1};
 };
