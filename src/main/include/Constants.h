@@ -14,6 +14,10 @@ const int BACK_RIGHT_ENCODER[] = {0, 0};
 
 const int GYRO = 0;
 
+const int INTAKE = 0;
+const int ELEVATOR = 0;
+const int FLY_WHEEL = 0;
+
 float PI = 3.141592653589;
 
 frc::Translation2d FL{0_m, 0_m};
