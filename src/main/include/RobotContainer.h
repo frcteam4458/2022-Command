@@ -9,7 +9,7 @@
 #include "commands/AutoDrive.h"
 #include "subsystems/Mecanum.h"
 
-#include "commands/Intake.h"
+#include "commands/Jerry.h"
 
 class RobotContainer
 {
@@ -21,10 +21,10 @@ public:
 
 private:
   Mecanum m_drive;
-  AutoDrive m_autoDrive;
+  Intake m_autoDrive;
   Drive m_teleop;
 
-  Intake m_intakeCommand;
+  Jerry m_intakeCommand;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;

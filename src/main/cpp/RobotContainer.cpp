@@ -1,7 +1,9 @@
 #include "RobotContainer.h"
+#include "Constants.h"
 
-RobotContainer::RobotContainer() : m_autoDrive(&m_drive),
+RobotContainer::RobotContainer() : m_autoDrive(),
                                    m_teleop(&m_drive),
+                                   m_intakeCommand{&m_drive},
 
                                    leftStick{0},
                                    rightStick{1},

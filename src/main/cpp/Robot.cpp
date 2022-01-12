@@ -38,12 +38,12 @@ void Robot::TeleopInit()
     m_autonomousCommand = nullptr;
   }
 
-  m_container.GetTeleopCommand()->Schedule();
+  // m_container.GetTeleopCommand()->Schedule();
 }
 
 void Robot::TeleopPeriodic()
 {
-  // write to C:\pose
+  frc::SmartDashboard::PutNumber("test", 1);
 }
 
 void Robot::TestPeriodic() {}

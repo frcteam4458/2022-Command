@@ -1,20 +1,20 @@
 #include "commands/AutoDrive.h"
 
-AutoDrive::AutoDrive(Mecanum *drive) : m_drive(drive)
-{
-	AddRequirements(drive);
-}
-
-void AutoDrive::Initialize()
+Intake::Intake() : test{0}
 {
 }
 
-void AutoDrive::Execute()
+void Intake::Initialize()
 {
-	m_drive->Drive(1_mps, 0_mps, units::radians_per_second_t(0.5f));
+
 }
 
-bool AutoDrive::IsFinished()
+void Intake::Execute()
 {
-	return m_drive->GetPose().X() >= 2_m;
+	test.Set(1);
+}
+
+bool Intake::IsFinished()
+{
+	return true;
 }
