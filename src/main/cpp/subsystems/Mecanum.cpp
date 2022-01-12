@@ -20,7 +20,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT},
                      gyro{GYRO},
 
                      m_kinematics{FL, FR, BL, BR},
-                     m_odometry{m_kinematics, units::radian_t(gyro.GetAngle() * (180 / PI)), frc::Pose2d{0_m, 0_m, 0_rad}},
+                     m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
                      pose{0_m, 0_m, 0_rad}
 {
   fr.SetInverted(true);
@@ -28,6 +28,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT},
 
   // do i invert the encoders? not sure
   // set distanceperpulse
+  
 }
 
 void Mecanum::Periodic()
@@ -37,9 +38,7 @@ void Mecanum::Periodic()
                                            units::meters_per_second_t(blEncoder.GetRate()),
                                            units::meters_per_second_t(brEncoder.GetRate())};
 
-  frc::Rotation2d gyroAngle{units::degree_t(-gyro.GetAngle())};
-
-  pose = m_odometry.Update(gyroAngle, wheelSpeeds);
+  pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
 }
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
@@ -72,13 +71,19 @@ void Mecanum::DriveJoystick(float lx, float ly, float rx)
 float Mecanum::GetAngle()
 {
   float gyroAngle = gyro.GetAngle();
-  gyroAngle = std::abs(std::fmod(-gyroAngle + 90, 360));
+  extern float gyroOffset;
+  gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360));
   return gyroAngle;
 }
 
 units::degree_t Mecanum::GetAngleDegrees()
 {
   return units::degree_t{GetAngle()};
+}
+
+units::radian_t Mecanum::GetAngleRadians()
+{
+  return units::radian_t{GetAngle() / (180/PI)};
 }
 
 frc::Pose2d Mecanum::GetPose()

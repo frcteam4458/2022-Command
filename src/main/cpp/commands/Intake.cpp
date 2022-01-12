@@ -1,14 +1,20 @@
 #include "commands/Intake.h"
-#include "Constants.h"
 
-Intake::Intake() : intake{INTAKE} {}
+Intake::Intake()
+{
+	
+}
+
+void Intake::Initialize()
+{
+}
 
 void Intake::Execute()
 {
-    intake.Set(1);
+	// intake.Set(1);
 }
 
-void Intake::End(bool interrupted)
+bool Intake::IsFinished()
 {
-    intake.Set(0);
+	return true;
 }

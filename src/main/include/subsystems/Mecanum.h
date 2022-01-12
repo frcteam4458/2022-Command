@@ -21,6 +21,7 @@ public:
 
   float GetAngle();
   units::degree_t GetAngleDegrees();
+  units::radian_t GetAngleRadians();
 
   frc::Pose2d GetPose();
 
