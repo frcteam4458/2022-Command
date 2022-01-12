@@ -38,7 +38,10 @@ void Robot::TeleopInit()
   m_container.GetTeleopCommand()->Schedule();
 }
 
-void Robot::TeleopPeriodic() {}
+void Robot::TeleopPeriodic()
+{
+  // write to C:\pose
+}
 
 void Robot::TestPeriodic() {}
 

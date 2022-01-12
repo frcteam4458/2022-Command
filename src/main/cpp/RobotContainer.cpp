@@ -6,6 +6,7 @@ RobotContainer::RobotContainer() : m_autoDrive(&m_drive),
                                    leftStick{0},
                                    rightStick{1},
                                    secondPlayer{2},
+                                   
                                    intakeButton{&leftStick, 0}
 {
   ConfigureButtonBindings();
