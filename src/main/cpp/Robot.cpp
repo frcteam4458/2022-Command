@@ -22,7 +22,7 @@ void Robot::AutonomousInit()
 {
   m_autonomousCommand = m_container.GetAutonomousCommand();
 
-  if (m_autonomousCommand != nullptr)
+  if (m_autonomousCommand != nullptr) // just makes sure the autonomous exists
   {
     m_autonomousCommand->Schedule();
   }
@@ -37,8 +37,6 @@ void Robot::TeleopInit()
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-
-  // m_container.GetTeleopCommand()->Schedule();
 }
 
 void Robot::TeleopPeriodic()

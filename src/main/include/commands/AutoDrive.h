@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef INTAKE_H
-#define INTAKE_H
+#ifndef AUTO_DRIVE_H
+#define AUTO_DRIVE_H
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
@@ -9,16 +9,16 @@
 
 #include "subsystems/Mecanum.h"
 
-class Intake : public frc2::CommandHelper<frc2::CommandBase, Intake>
+class AutoDrive : public frc2::CommandHelper<frc2::CommandBase, AutoDrive>
 {
 public:
-    explicit Intake();
+    explicit AutoDrive(Mecanum *drive);
 
     void Initialize() override;
     void Execute() override;
     bool IsFinished() override;
 
 private:
-    frc::PWMSparkMax test;
+    Mecanum *m_drive;
 };
 #endif

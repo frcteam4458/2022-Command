@@ -6,10 +6,10 @@
 #include <frc2/command/Command.h>
 
 #include "commands/Drive.h"
-#include "commands/AutoDrive.h"
+#include "commands/Intake.h"
 #include "subsystems/Mecanum.h"
 
-#include "commands/Jerry.h"
+#include "commands/AutoDrive.h"
 
 class RobotContainer
 {
@@ -24,7 +24,7 @@ private:
   Intake m_autoDrive;
   Drive m_teleop;
 
-  Jerry m_intakeCommand;
+  AutoDrive m_intakeCommand;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;

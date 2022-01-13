@@ -9,9 +9,9 @@
 #define CONSTANTS_H
 
 const int FRONT_LEFT = 0;
-const int FRONT_RIGHT = 0;
-const int BACK_LEFT = 0;
-const int BACK_RIGHT = 0;
+const int FRONT_RIGHT = 1;
+const int BACK_LEFT = 2;
+const int BACK_RIGHT = 3;
 
 const int FRONT_LEFT_ENCODER[] = {0, 0};
 const int FRONT_RIGHT_ENCODER[] = {0, 0};

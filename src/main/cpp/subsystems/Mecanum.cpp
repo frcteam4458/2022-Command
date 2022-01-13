@@ -7,6 +7,8 @@
 #include <frc/kinematics/MecanumDriveWheelSpeeds.h>
 #include <math.h>
 
+// note to future programmers: this is the worst file i promise
+
 Mecanum::Mecanum() : fl{FRONT_LEFT},
                      fr{FRONT_RIGHT},
                      bl{BACK_LEFT},
@@ -19,7 +21,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT},
 
                      gyro{GYRO},
 
-                     m_kinematics{FL, FR, BL, BR},
+                     m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
                      m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
                      pose{0_m, 0_m, 0_rad}
 {
@@ -45,10 +47,10 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
 {
   frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(GetAngleDegrees()));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
-  wheelSpeeds.Desaturate(MAX_SPEED);
+  wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   auto [sfl, sfr, sbl, sbr] = wheelSpeeds;
 
-  fl.Set(sfl / MAX_SPEED);
+  fl.Set(sfl / MAX_SPEED); // dividing by MAX_SPEED normalizes them
   fr.Set(sfr / MAX_SPEED);
   bl.Set(sbl / MAX_SPEED);
   br.Set(sbr / MAX_SPEED);
@@ -72,8 +74,8 @@ float Mecanum::GetAngle()
 {
   float gyroAngle = gyro.GetAngle();
   extern float gyroOffset;
-  gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360));
-  return gyroAngle;
+  gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
+  return gyroAngle;                                                     // mathematical
 }
 
 units::degree_t Mecanum::GetAngleDegrees()

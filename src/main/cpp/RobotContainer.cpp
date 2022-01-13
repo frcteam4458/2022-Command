@@ -1,5 +1,6 @@
 #include "RobotContainer.h"
 #include "Constants.h"
+#include "frc2/command/CommandScheduler.h"
 
 RobotContainer::RobotContainer() : m_autoDrive(),
                                    m_teleop(&m_drive),
@@ -16,15 +17,18 @@ RobotContainer::RobotContainer() : m_autoDrive(),
 
 void RobotContainer::ConfigureButtonBindings()
 {
+  m_drive.SetDefaultCommand(m_teleop);
   intakeButton.WhileHeld(m_intakeCommand);
 }
 
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
+  // make this choose from shuffleboard input
   return &m_autoDrive;
 }
 
 frc2::Command *RobotContainer::GetTeleopCommand()
 {
+  // same as above
   return &m_teleop;
 }

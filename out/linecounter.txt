@@ -1,0 +1,103 @@
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2022-01-12 18:38:10
+count workspace : c:\Users\Brendan\Desktop\2022-Command
+total files : 76
+total code lines : 1377
+total comment lines : 159
+total blank lines : 213
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |            185|            127|             38|     13|
+   |    .properties|              7|              1|              0|   0.51|
+   |           .bin|              1|              0|              0|  0.073|
+   |            .md|             22|              0|              2|    1.6|
+   |          .json|            442|              0|             29|     32|
+   |        .gradle|             91|             18|             17|    6.6|
+   |         .probe|              1|              0|              0|  0.073|
+   |           .bat|             44|              0|             10|    3.2|
+   |           .txt|            221|              8|             14|     16|
+   |             .h|            179|              0|             53|     13|
+   |           .cpp|            184|              5|             50|     13|
+   -------------------------------------------------------------------------
+.gitignore, code is 83, comment is 57, blank is 24.
+.gradle\7.3.3\checksums\checksums.lock, it is a binary file.
+.gradle\7.3.3\checksums\md5-checksums.bin, it is a binary file.
+.gradle\7.3.3\checksums\sha1-checksums.bin, it is a binary file.
+.gradle\7.3.3\dependencies-accessors\dependencies-accessors.lock, it is a binary file.
+.gradle\7.3.3\dependencies-accessors\gc.properties, code is 0, comment is 0, blank is 0.
+.gradle\7.3.3\executionHistory\executionHistory.bin, it is a binary file.
+.gradle\7.3.3\executionHistory\executionHistory.lock, it is a binary file.
+.gradle\7.3.3\fileChanges\last-build.bin, code is 1, comment is 0, blank is 0.
+.gradle\7.3.3\fileContent\fileContent.lock, it is a binary file.
+.gradle\7.3.3\fileContent\parsedCSource.bin, it is a binary file.
+.gradle\7.3.3\fileHashes\fileHashes.bin, it is a binary file.
+.gradle\7.3.3\fileHashes\fileHashes.lock, it is a binary file.
+.gradle\7.3.3\gc.properties, code is 0, comment is 0, blank is 0.
+.gradle\7.3.3\nativeCompile\nativeCompile.bin, it is a binary file.
+.gradle\7.3.3\nativeCompile\nativeCompile.lock, it is a binary file.
+.gradle\buildOutputCleanup\buildOutputCleanup.lock, it is a binary file.
+.gradle\buildOutputCleanup\cache.properties, code is 2, comment is 0, blank is 0.
+.gradle\buildOutputCleanup\outputFiles.bin, it is a binary file.
+.gradle\file-system.probe, code is 1, comment is 0, blank is 0.
+.gradle\vcs-1\gc.properties, code is 0, comment is 0, blank is 0.
+.wpilib\wpilib_preferences.json, code is 6, comment is 0, blank is 0.
+build.gradle, code is 65, comment is 18, blank is 16.
+build\exe\frcUserProgram\debug\frcUserProgram, it is a binary file.
+build\exe\frcUserProgram\debug\frcUserProgram.debug, it is a binary file.
+build\exe\frcUserProgram\release\frcUserProgram, it is a binary file.
+build\exe\frcUserProgram\release\frcUserProgram.debug, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\3ax05ozsv1t2yqokh1yf5252y\MathHelper.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\3bg5a77l7vd4edmrxq5jco6ri\Robot.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\3x8760vkw4ic3vyjwx7qfhsvi\Intake.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\45vqxio4pi9nbs4dcvmcpqo1r\RobotContainer.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\6l2rybcb5cwmw3x2r5dy74qj0\Mecanum.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\7onxgcpasggg6n1r2u4p9am53\Drive.o, it is a binary file.
+build\objs\frcUserProgram\debug\frcUserProgramCpp\8ok3taf8jutka6g0wkx5mawxo\AutoDrive.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\3ax05ozsv1t2yqokh1yf5252y\MathHelper.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\3bg5a77l7vd4edmrxq5jco6ri\Robot.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\3x8760vkw4ic3vyjwx7qfhsvi\Intake.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\45vqxio4pi9nbs4dcvmcpqo1r\RobotContainer.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\6l2rybcb5cwmw3x2r5dy74qj0\Mecanum.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\7onxgcpasggg6n1r2u4p9am53\Drive.o, it is a binary file.
+build\objs\frcUserProgram\release\frcUserProgramCpp\8ok3taf8jutka6g0wkx5mawxo\AutoDrive.o, it is a binary file.
+build\tmp\compileFrcUserProgramDebugExecutableFrcUserProgramCpp\options.txt, code is 57, comment is 0, blank is 0.
+build\tmp\compileFrcUserProgramDebugExecutableFrcUserProgramCpp\output.txt, code is 8, comment is 2, blank is 6.
+build\tmp\compileFrcUserProgramReleaseExecutableFrcUserProgramCpp\options.txt, code is 56, comment is 0, blank is 0.
+build\tmp\compileFrcUserProgramReleaseExecutableFrcUserProgramCpp\output.txt, code is 8, comment is 2, blank is 6.
+build\tmp\linkFrcUserProgramDebugExecutable\options.txt, code is 41, comment is 0, blank is 0.
+build\tmp\linkFrcUserProgramDebugExecutable\output.txt, code is 3, comment is 2, blank is 1.
+build\tmp\linkFrcUserProgramReleaseExecutable\options.txt, code is 41, comment is 0, blank is 0.
+build\tmp\linkFrcUserProgramReleaseExecutable\output.txt, code is 3, comment is 2, blank is 1.
+build\vscodeconfig.json, code is 361, comment is 0, blank is 26.
+gradle\wrapper\gradle-wrapper.jar, it is a binary file.
+gradle\wrapper\gradle-wrapper.properties, code is 5, comment is 1, blank is 0.
+gradlew, code is 102, comment is 70, blank is 14.
+gradlew.bat, code is 44, comment is 0, blank is 10.
+settings.gradle, code is 26, comment is 0, blank is 1.
+src\main\cpp\commands\AutoDrive.cpp, code is 16, comment is 0, blank is 4.
+src\main\cpp\commands\Drive.cpp, code is 6, comment is 0, blank is 2.
+src\main\cpp\commands\Intake.cpp, code is 12, comment is 0, blank is 3.
+src\main\cpp\MathHelper.cpp, code is 6, comment is 0, blank is 1.
+src\main\cpp\Robot.cpp, code is 40, comment is 1, blank is 15.
+src\main\cpp\RobotContainer.cpp, code is 24, comment is 0, blank is 6.
+src\main\cpp\subsystems\Mecanum.cpp, code is 72, comment is 4, blank is 17.
+src\main\deploy\example.txt, code is 4, comment is 0, blank is 0.
+src\main\include\commands\AutoDrive.h, code is 18, comment is 0, blank is 6.
+src\main\include\commands\Drive.h, code is 18, comment is 0, blank is 5.
+src\main\include\commands\Intake.h, code is 17, comment is 0, blank is 4.
+src\main\include\Constants.h, code is 30, comment is 0, blank is 9.
+src\main\include\Global.h, code is 5, comment is 0, blank is 3.
+src\main\include\MathHelper.h, code is 5, comment is 0, blank is 1.
+src\main\include\Robot.h, code is 23, comment is 0, blank is 5.
+src\main\include\RobotContainer.h, code is 27, comment is 0, blank is 10.
+src\main\include\subsystems\Mecanum.h, code is 36, comment is 0, blank is 10.
+src\test\cpp\main.cpp, code is 8, comment is 0, blank is 2.
+vendordeps\photonlib.json, code is 39, comment is 0, blank is 2.
+vendordeps\WPILibNewCommands.json, code is 36, comment is 0, blank is 1.
+WPILib-License.md, code is 22, comment is 0, blank is 2.
+===============================================================================

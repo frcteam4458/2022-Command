@@ -1,0 +1,563 @@
+{
+    "extension": "linecounter",
+    "version": "0.2.7",
+    "workspace": "c:\\Users\\Brendan\\Desktop\\2022-Command",
+    "linecount": [
+        {
+            "version": "0.2.7",
+            "counttime": "2022-01-12 18:38:10",
+            "filesum": 76,
+            "codesum": 1377,
+            "commentsum": 159,
+            "blanksum": 213,
+            "statistics": {
+                "": {
+                    "code": 185,
+                    "comment": 127,
+                    "blank": 38
+                },
+                ".properties": {
+                    "code": 7,
+                    "comment": 1,
+                    "blank": 0
+                },
+                ".bin": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".md": {
+                    "code": 22,
+                    "comment": 0,
+                    "blank": 2
+                },
+                ".json": {
+                    "code": 442,
+                    "comment": 0,
+                    "blank": 29
+                },
+                ".gradle": {
+                    "code": 91,
+                    "comment": 18,
+                    "blank": 17
+                },
+                ".probe": {
+                    "code": 1,
+                    "comment": 0,
+                    "blank": 0
+                },
+                ".bat": {
+                    "code": 44,
+                    "comment": 0,
+                    "blank": 10
+                },
+                ".txt": {
+                    "code": 221,
+                    "comment": 8,
+                    "blank": 14
+                },
+                ".h": {
+                    "code": 179,
+                    "comment": 0,
+                    "blank": 53
+                },
+                ".cpp": {
+                    "code": 184,
+                    "comment": 5,
+                    "blank": 50
+                }
+            },
+            "filelist": [
+                {
+                    "blank": 24,
+                    "code": 83,
+                    "comment": 57,
+                    "filename": ".gitignore"
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\checksums\\checksums.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\checksums\\md5-checksums.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\checksums\\sha1-checksums.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\dependencies-accessors\\dependencies-accessors.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": ".gradle\\7.3.3\\dependencies-accessors\\gc.properties"
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\executionHistory\\executionHistory.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\executionHistory\\executionHistory.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".gradle\\7.3.3\\fileChanges\\last-build.bin"
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\fileContent\\fileContent.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\fileContent\\parsedCSource.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\fileHashes\\fileHashes.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\fileHashes\\fileHashes.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": ".gradle\\7.3.3\\gc.properties"
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\nativeCompile\\nativeCompile.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\7.3.3\\nativeCompile\\nativeCompile.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": ".gradle\\buildOutputCleanup\\buildOutputCleanup.lock",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": ".gradle\\buildOutputCleanup\\cache.properties"
+                },
+                {
+                    "filename": ".gradle\\buildOutputCleanup\\outputFiles.bin",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": ".gradle\\file-system.probe"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": ".gradle\\vcs-1\\gc.properties"
+                },
+                {
+                    "blank": 0,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": ".wpilib\\wpilib_preferences.json"
+                },
+                {
+                    "blank": 16,
+                    "code": 65,
+                    "comment": 18,
+                    "filename": "build.gradle"
+                },
+                {
+                    "filename": "build\\exe\\frcUserProgram\\debug\\frcUserProgram",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\exe\\frcUserProgram\\debug\\frcUserProgram.debug",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\exe\\frcUserProgram\\release\\frcUserProgram",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\exe\\frcUserProgram\\release\\frcUserProgram.debug",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3ax05ozsv1t2yqokh1yf5252y\\MathHelper.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\3x8760vkw4ic3vyjwx7qfhsvi\\Intake.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\45vqxio4pi9nbs4dcvmcpqo1r\\RobotContainer.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\6l2rybcb5cwmw3x2r5dy74qj0\\Mecanum.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\7onxgcpasggg6n1r2u4p9am53\\Drive.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\debug\\frcUserProgramCpp\\8ok3taf8jutka6g0wkx5mawxo\\AutoDrive.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\3ax05ozsv1t2yqokh1yf5252y\\MathHelper.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\3bg5a77l7vd4edmrxq5jco6ri\\Robot.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\3x8760vkw4ic3vyjwx7qfhsvi\\Intake.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\45vqxio4pi9nbs4dcvmcpqo1r\\RobotContainer.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\6l2rybcb5cwmw3x2r5dy74qj0\\Mecanum.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\7onxgcpasggg6n1r2u4p9am53\\Drive.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "build\\objs\\frcUserProgram\\release\\frcUserProgramCpp\\8ok3taf8jutka6g0wkx5mawxo\\AutoDrive.o",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "build\\tmp\\compileFrcUserProgramDebugExecutableFrcUserProgramCpp\\options.txt"
+                },
+                {
+                    "blank": 6,
+                    "code": 8,
+                    "comment": 2,
+                    "filename": "build\\tmp\\compileFrcUserProgramDebugExecutableFrcUserProgramCpp\\output.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "build\\tmp\\compileFrcUserProgramReleaseExecutableFrcUserProgramCpp\\options.txt"
+                },
+                {
+                    "blank": 6,
+                    "code": 8,
+                    "comment": 2,
+                    "filename": "build\\tmp\\compileFrcUserProgramReleaseExecutableFrcUserProgramCpp\\output.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "build\\tmp\\linkFrcUserProgramDebugExecutable\\options.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "build\\tmp\\linkFrcUserProgramDebugExecutable\\output.txt"
+                },
+                {
+                    "blank": 0,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "build\\tmp\\linkFrcUserProgramReleaseExecutable\\options.txt"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 2,
+                    "filename": "build\\tmp\\linkFrcUserProgramReleaseExecutable\\output.txt"
+                },
+                {
+                    "blank": 26,
+                    "code": 361,
+                    "comment": 0,
+                    "filename": "build\\vscodeconfig.json"
+                },
+                {
+                    "filename": "gradle\\wrapper\\gradle-wrapper.jar",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 1,
+                    "filename": "gradle\\wrapper\\gradle-wrapper.properties"
+                },
+                {
+                    "blank": 14,
+                    "code": 102,
+                    "comment": 70,
+                    "filename": "gradlew"
+                },
+                {
+                    "blank": 10,
+                    "code": 44,
+                    "comment": 0,
+                    "filename": "gradlew.bat"
+                },
+                {
+                    "blank": 1,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "settings.gradle"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src\\main\\cpp\\commands\\AutoDrive.cpp"
+                },
+                {
+                    "blank": 2,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\main\\cpp\\commands\\Drive.cpp"
+                },
+                {
+                    "blank": 3,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src\\main\\cpp\\commands\\Intake.cpp"
+                },
+                {
+                    "blank": 1,
+                    "code": 6,
+                    "comment": 0,
+                    "filename": "src\\main\\cpp\\MathHelper.cpp"
+                },
+                {
+                    "blank": 15,
+                    "code": 40,
+                    "comment": 1,
+                    "filename": "src\\main\\cpp\\Robot.cpp"
+                },
+                {
+                    "blank": 6,
+                    "code": 24,
+                    "comment": 0,
+                    "filename": "src\\main\\cpp\\RobotContainer.cpp"
+                },
+                {
+                    "blank": 17,
+                    "code": 72,
+                    "comment": 4,
+                    "filename": "src\\main\\cpp\\subsystems\\Mecanum.cpp"
+                },
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "src\\main\\deploy\\example.txt"
+                },
+                {
+                    "blank": 6,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\commands\\AutoDrive.h"
+                },
+                {
+                    "blank": 5,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\commands\\Drive.h"
+                },
+                {
+                    "blank": 4,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\commands\\Intake.h"
+                },
+                {
+                    "blank": 9,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\Constants.h"
+                },
+                {
+                    "blank": 3,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\Global.h"
+                },
+                {
+                    "blank": 1,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\MathHelper.h"
+                },
+                {
+                    "blank": 5,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\Robot.h"
+                },
+                {
+                    "blank": 10,
+                    "code": 27,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\RobotContainer.h"
+                },
+                {
+                    "blank": 10,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "src\\main\\include\\subsystems\\Mecanum.h"
+                },
+                {
+                    "blank": 2,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src\\test\\cpp\\main.cpp"
+                },
+                {
+                    "blank": 2,
+                    "code": 39,
+                    "comment": 0,
+                    "filename": "vendordeps\\photonlib.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 36,
+                    "comment": 0,
+                    "filename": "vendordeps\\WPILibNewCommands.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "WPILib-License.md"
+                }
+            ]
+        }
+    ]
+}
