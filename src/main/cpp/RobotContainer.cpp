@@ -1,6 +1,7 @@
 #include "RobotContainer.h"
 #include "Constants.h"
 #include "frc2/command/CommandScheduler.h"
+#include <frc/shuffleboard/Shuffleboard.h>
 
 RobotContainer::RobotContainer() : drive{},
                                    intakeCommand{},
@@ -34,4 +35,8 @@ frc2::Command *RobotContainer::GetTeleopCommand()
   // same as above
   // return &m_teleop;
   return nullptr;
+}
+
+void RobotContainer::ShuffleBoard()
+{
 }

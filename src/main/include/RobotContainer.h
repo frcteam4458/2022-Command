@@ -18,6 +18,7 @@ public:
 
   frc2::Command *GetAutonomousCommand();
   frc2::Command *GetTeleopCommand();
+  void ShuffleBoard();
 
 private:
   Mecanum drive;

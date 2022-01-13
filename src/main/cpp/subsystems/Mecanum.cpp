@@ -6,6 +6,10 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/kinematics/MecanumDriveWheelSpeeds.h>
 #include <math.h>
+#include <frc/shuffleboard/Shuffleboard.h>
+
+#include <frc/drive/MecanumDrive.h>
+#include <wpi/StringMap.h>
 
 // note to future programmers: this is the worst file i promise
 
@@ -41,6 +45,11 @@ void Mecanum::Periodic()
                                            units::meters_per_second_t(brEncoder.GetRate())};
 
   pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
+
+  
+  frc::Shuffleboard::SelectTab("Telemetry");
+  frc::MecanumDrive drive{fl, bl, fr, bl};
+  frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
 }
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)

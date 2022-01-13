@@ -7,7 +7,9 @@
 #include "Global.h"
 
 void Robot::RobotInit()
-{}
+{
+  m_container.ShuffleBoard();
+}
 
 void Robot::RobotPeriodic()
 {
@@ -41,7 +43,7 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
-  frc::SmartDashboard::PutNumber("test", 1);
+  
 }
 
 void Robot::TestPeriodic() {}
