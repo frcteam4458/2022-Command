@@ -20,11 +20,12 @@ public:
   frc2::Command *GetTeleopCommand();
 
 private:
-  Mecanum m_drive;
-  Intake m_autoDrive;
+  Mecanum drive;
+
+  Intake intakeCommand;
   Drive m_teleop;
 
-  AutoDrive m_intakeCommand;
+  AutoDrive autoDrive;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;

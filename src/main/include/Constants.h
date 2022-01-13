@@ -26,10 +26,10 @@ const int FLY_WHEEL = 0;
 
 const float PI = 3.141592653589;
 
-const frc::Translation2d FL{0_m, 0_m};
-const frc::Translation2d FR{0_m, 0_m};
-const frc::Translation2d BL{0_m, 0_m};
-const frc::Translation2d BR{0_m, 0_m};
+const frc::Translation2d FL{.0305_m, 0.254_m};
+const frc::Translation2d FR{-.0305_m, 0.254_m};
+const frc::Translation2d BL{.0305_m, -0.254_m};
+const frc::Translation2d BR{-0.305_m, -0.254_m};
 
 const units::meters_per_second_t MAX_SPEED{3.0f};
 const units::meters_per_second_squared_t MAX_ACCEL{1.0f};
