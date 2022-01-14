@@ -54,7 +54,7 @@ void Mecanum::Periodic()
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
-  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(GetAngleDegrees()));
+  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(units::degree_t(0.0f)));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   auto [sfl, sfr, sbl, sbr] = wheelSpeeds;

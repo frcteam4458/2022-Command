@@ -19,5 +19,10 @@ private:
     Mecanum *m_drive;
     frc::Joystick leftStick{0};
     frc::Joystick rightStick{1};
+
+    frc::PWMSparkMax fl{0};
+    frc::PWMSparkMax fr{1};
+    frc::PWMSparkMax bl{2};
+    frc::PWMSparkMax br{3};
 };
 #endif
