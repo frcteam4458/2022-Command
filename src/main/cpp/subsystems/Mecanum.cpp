@@ -13,24 +13,24 @@
 
 // note to future programmers: this is the worst file i promise
 
-Mecanum::Mecanum() : fl{FRONT_LEFT},
-                     fr{FRONT_RIGHT},
-                     bl{BACK_LEFT},
-                     br{BACK_RIGHT},
+Mecanum::Mecanum() : //fl{FRONT_LEFT},
+                    //fr{FRONT_RIGHT},
+                     //bl{BACK_LEFT},
+                     //br{BACK_RIGHT},
 
-                     flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
-                     frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
-                     blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
-                     brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
+                     //flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
+                     //frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
+                    //  blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
+                    //  brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
 
                      gyro{GYRO},
 
-                     m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
-                     m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
-                     pose{0_m, 0_m, 0_rad}
+                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
+                      m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}}
+                    // pose{0_m, 0_m, 0_rad}
 {
-  fr.SetInverted(true);
-  br.SetInverted(true);
+  // fr.SetInverted(true);
+  // br.SetInverted(true);
 
   // do i invert the encoders? not sure
   // set distanceperpulse
@@ -39,50 +39,50 @@ Mecanum::Mecanum() : fl{FRONT_LEFT},
 
 void Mecanum::Periodic()
 {
-  frc::MecanumDriveWheelSpeeds wheelSpeeds{units::meters_per_second_t(flEncoder.GetRate()),
-                                           units::meters_per_second_t(frEncoder.GetRate()),
-                                           units::meters_per_second_t(blEncoder.GetRate()),
-                                           units::meters_per_second_t(brEncoder.GetRate())};
+  // frc::MecanumDriveWheelSpeeds wheelSpeeds{units::meters_per_second_t(flEncoder.GetRate()),
+  //                                          units::meters_per_second_t(frEncoder.GetRate()),
+  //                                          units::meters_per_second_t(blEncoder.GetRate()),
+  //                                          units::meters_per_second_t(brEncoder.GetRate())};
 
-  pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
+  // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
 
   
-  frc::Shuffleboard::SelectTab("Telemetry");
-  frc::MecanumDrive drive{fl, bl, fr, bl};
-  frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
+  // frc::Shuffleboard::SelectTab("Telemetry");
+  // frc::MecanumDrive drive{fl, bl, fr, bl};
+  // frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
 }
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
-  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(units::degree_t(0.0f)));
-  frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
-  wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
-  auto [sfl, sfr, sbl, sbr] = wheelSpeeds;
+  // frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(units::degree_t(0.0f)));
+  // frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
+  // wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
+  // auto [sfl, sfr, sbl, sbr] = wheelSpeeds;
 
-  fl.Set(sfl / MAX_SPEED); // dividing by MAX_SPEED normalizes them
-  fr.Set(sfr / MAX_SPEED);
-  bl.Set(sbl / MAX_SPEED);
-  br.Set(sbr / MAX_SPEED);
+  // fl.Set(sfl / MAX_SPEED); // dividing by MAX_SPEED normalizes them
+  // fr.Set(sfr / MAX_SPEED);
+  // bl.Set(sbl / MAX_SPEED);
+  // br.Set(sbr / MAX_SPEED);
 }
 
 void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t _bl, units::volt_t _br)
 {
-  fl.SetVoltage(_fl);
-  fr.SetVoltage(_fr);
-  bl.SetVoltage(_bl);
-  br.SetVoltage(_br);
+//   fl.SetVoltage(_fl);
+//   fr.SetVoltage(_fr);
+//   bl.SetVoltage(_bl);
+//   br.SetVoltage(_br);
 }
 
 void Mecanum::DriveJoystick(float lx, float ly, float rx)
 { // in degrees
-  Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
+//   Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
 }
 
-// counterclockwise, starting from the right. same as in math.
+// // counterclockwise, starting from the right. same as in math.
 float Mecanum::GetAngle()
 {
   float gyroAngle = gyro.GetAngle();
-  extern float gyroOffset;
+  float gyroOffset = 0.0f;
   gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
   return gyroAngle;                                                     // mathematical
 }

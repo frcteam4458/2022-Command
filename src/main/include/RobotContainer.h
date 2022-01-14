@@ -23,10 +23,10 @@ public:
 private:
   Mecanum drive;
 
-  Intake intakeCommand;
-  Drive m_teleop;
+  // Intake intakeCommand;
+  // Drive teleop;
 
-  AutoDrive autoDrive;
+  // AutoDrive autoDrive;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;

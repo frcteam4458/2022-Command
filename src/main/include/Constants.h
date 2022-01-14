@@ -13,14 +13,14 @@ const int FRONT_RIGHT = 1;
 const int BACK_LEFT = 2;
 const int BACK_RIGHT = 3;
 
-const int FRONT_LEFT_ENCODER[] = {0, 0};
-const int FRONT_RIGHT_ENCODER[] = {0, 0};
-const int BACK_LEFT_ENCODER[] = {0, 0};
-const int BACK_RIGHT_ENCODER[] = {0, 0};
+const int FRONT_LEFT_ENCODER[] = {0, 1};
+const int FRONT_RIGHT_ENCODER[] = {2, 3};
+const int BACK_LEFT_ENCODER[] = {4, 5};
+const int BACK_RIGHT_ENCODER[] = {6, 7};
 
 const int GYRO = 0;
 
-const int INTAKE = 0;
+const int INTAKE = 4;
 const int ELEVATOR = 0;
 const int FLY_WHEEL = 0;
 

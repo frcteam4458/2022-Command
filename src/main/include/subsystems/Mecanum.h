@@ -26,21 +26,21 @@ public:
   frc::Pose2d GetPose();
 
 private:
-  frc::PWMSparkMax fl;
-  frc::PWMSparkMax fr;
-  frc::PWMSparkMax bl;
-  frc::PWMSparkMax br;
+  // frc::PWMSparkMax fl;
+  // frc::PWMSparkMax fr;
+  // frc::PWMSparkMax bl;
+  // frc::PWMSparkMax br;
 
-  frc::Encoder flEncoder;
-  frc::Encoder frEncoder;
-  frc::Encoder blEncoder;
-  frc::Encoder brEncoder;
+  // frc::Encoder flEncoder;
+  // frc::Encoder frEncoder;
+  // frc::Encoder blEncoder;
+  // frc::Encoder brEncoder;
 
   frc::AnalogGyro gyro;
 
   frc::MecanumDriveKinematics m_kinematics;
   frc::MecanumDriveOdometry m_odometry;
 
-  frc::Pose2d pose;
+  // frc::Pose2d pose;
 };
 #endif

@@ -5,6 +5,7 @@
 #include <frc/Joystick.h>
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include <frc/motorcontrol/PWMSparkMax.h>
 
 #include "subsystems/Mecanum.h"
 
@@ -20,9 +21,9 @@ private:
     frc::Joystick leftStick{0};
     frc::Joystick rightStick{1};
 
-    frc::PWMSparkMax fl{0};
-    frc::PWMSparkMax fr{1};
-    frc::PWMSparkMax bl{2};
-    frc::PWMSparkMax br{3};
+    // frc::PWMSparkMax fl{0};
+    // frc::PWMSparkMax fr{1};
+    // frc::PWMSparkMax bl{2};
+    // frc::PWMSparkMax br{3};
 };
 #endif
