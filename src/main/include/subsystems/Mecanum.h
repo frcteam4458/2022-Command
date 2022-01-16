@@ -4,11 +4,13 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
+#include <frc/simulation/PWMSim.h>
 #include <frc/kinematics/MecanumDriveKinematics.h>
 #include <frc/kinematics/MecanumDriveOdometry.h>
 
 #include <frc/AnalogGyro.h>
 #include <frc/Encoder.h>
+#include <frc/simulation/EncoderSim.h>
 
 class Mecanum : public frc2::SubsystemBase
 {
@@ -30,6 +32,16 @@ private:
   frc::PWMSparkMax fr;
   frc::PWMSparkMax bl;
   frc::PWMSparkMax br;
+
+  frc::sim::PWMSim s_fl;
+  frc::sim::PWMSim s_fr;
+  frc::sim::PWMSim s_bl;
+  frc::sim::PWMSim s_br;
+
+  // frc::sim::EncoderSim s_flEncoder;
+  // frc::sim::EncoderSim s_frEncoder;
+  // frc::sim::EncoderSim s_blEncoder;
+  // frc::sim::EncoderSim s_brEncoder;
 
   // frc::Encoder flEncoder;
   // frc::Encoder frEncoder;
