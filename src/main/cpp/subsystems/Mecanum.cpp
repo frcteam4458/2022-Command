@@ -82,10 +82,10 @@ void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t 
 void Mecanum::DriveJoystick(float lx, float ly, float rx)
 {
   // Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
-  // fl.Set(ly + lx + 2 * rx);
-  // fr.Set(ly - lx - 2 * rx);
-  // bl.Set(ly - lx + 2 * rx);
-  // br.Set(ly + lx - 2 * rx);
+  fl.Set(ly + lx + 2 * rx);
+  fr.Set(ly - lx - 2 * rx);
+  bl.Set(ly - lx + 2 * rx);
+  br.Set(ly + lx - 2 * rx);
 
   s_fl.SetSpeed(ly + lx + 2 * rx);
   s_fr.SetSpeed(ly - lx - 2 * rx);
