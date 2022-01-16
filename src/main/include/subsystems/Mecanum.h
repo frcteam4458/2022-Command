@@ -38,15 +38,15 @@ private:
   frc::sim::PWMSim s_bl;
   frc::sim::PWMSim s_br;
 
-  // frc::sim::EncoderSim s_flEncoder;
-  // frc::sim::EncoderSim s_frEncoder;
-  // frc::sim::EncoderSim s_blEncoder;
-  // frc::sim::EncoderSim s_brEncoder;
+  frc::sim::EncoderSim s_flEncoder;
+  frc::sim::EncoderSim s_frEncoder;
+  frc::sim::EncoderSim s_blEncoder;
+  frc::sim::EncoderSim s_brEncoder;
 
-  // frc::Encoder flEncoder;
-  // frc::Encoder frEncoder;
-  // frc::Encoder blEncoder;
-  // frc::Encoder brEncoder;
+  frc::Encoder flEncoder;
+  frc::Encoder frEncoder;
+  frc::Encoder blEncoder;
+  frc::Encoder brEncoder;
 
   frc::AnalogGyro gyro;
 

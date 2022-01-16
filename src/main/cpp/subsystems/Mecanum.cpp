@@ -20,10 +20,15 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
                      bl{BACK_LEFT}, s_bl{BACK_LEFT},
                      br{BACK_RIGHT}, s_br{BACK_RIGHT},
 
-                     //flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
-                     //frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
-                     //blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
-                     //brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
+                     flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
+                     frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
+                     blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
+                     brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
+                     
+                     s_flEncoder{flEncoder},
+                     s_frEncoder{frEncoder},
+                     s_blEncoder{blEncoder},
+                     s_brEncoder{brEncoder},
 
                      gyro{GYRO},
 
