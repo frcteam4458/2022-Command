@@ -39,6 +39,8 @@ void Robot::TeleopInit()
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
+
+  m_container.GetTeleopCommand()->Schedule();
 }
 
 void Robot::TeleopPeriodic()

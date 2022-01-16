@@ -3,9 +3,9 @@
 #include "frc2/command/CommandScheduler.h"
 #include <frc/shuffleboard/Shuffleboard.h>
 
-RobotContainer::RobotContainer() : //drive{},
+RobotContainer::RobotContainer() : drive{},
                                    //intakeCommand{},
-                                   //teleop{&drive},
+                                   teleop{&drive},
                                    //autoDrive{&drive},
 
                                    leftStick{0},
@@ -23,6 +23,7 @@ void RobotContainer::ConfigureButtonBindings()
   // intakeButton.WhileHeld(intakeCommand);
 }
 
+
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
   // make this choose from shuffleboard input
@@ -32,7 +33,7 @@ frc2::Command *RobotContainer::GetAutonomousCommand()
 frc2::Command *RobotContainer::GetTeleopCommand()
 {
   // same as above
-  return nullptr;
+  return &teleop;
 }
 
 void RobotContainer::ShuffleBoard()

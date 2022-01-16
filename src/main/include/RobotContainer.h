@@ -24,7 +24,7 @@ private:
   Mecanum drive;
 
   // Intake intakeCommand;
-  // Drive teleop;
+  Drive teleop;
 
   // AutoDrive autoDrive;
 
