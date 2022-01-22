@@ -12,6 +12,8 @@
 #include <frc/Encoder.h>
 #include <frc/simulation/EncoderSim.h>
 
+#include <ctre/phoenix/sensors/PigeonIMU.h>
+
 class Mecanum : public frc2::SubsystemBase
 {
 public:
@@ -48,7 +50,7 @@ private:
   // frc::Encoder blEncoder;
   // frc::Encoder brEncoder;
 
-  frc::AnalogGyro gyro;
+  ctre::phoenix::sensors::PigeonIMU gyro;
 
   frc::MecanumDriveKinematics m_kinematics;
   // frc::MecanumDriveOdometry m_odometry;

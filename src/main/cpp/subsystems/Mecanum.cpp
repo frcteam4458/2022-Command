@@ -13,6 +13,8 @@
 
 #include <frc2/command/PrintCommand.h>
 
+#include <frc/smartdashboard/SmartDashboard.h>
+
 // note to future programmers: this is the worst file i promise
 
 Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
@@ -25,7 +27,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
                      //blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
                      //brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
 
-                     gyro{GYRO},
+                     gyro{1},
 
                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
                      // m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}}
@@ -34,7 +36,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   
   fl.SetInverted(true);
   bl.SetInverted(true);
-
+  // wpi::outs() << "sfidsjsdoi";
   // do i invert the encoders? not sure
   // set distanceperpulse
   
@@ -53,11 +55,15 @@ void Mecanum::Periodic()
   // frc::Shuffleboard::SelectTab("Telemetry");
   // frc::MecanumDrive drive{fl, bl, fr, bl};
   // frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
+  frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
+  frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
+
 }
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
-  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vx, vy, omega, frc::Rotation2d(units::degree_t(0.0f)));
+  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vy, vx, omega, frc::Rotation2d(units::degree_t(0.0f)));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   fl.Set(wheelSpeeds.frontLeft / MAX_SPEED); // dividing by MAX_SPEED normalizes them
@@ -73,34 +79,36 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
 
 void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t _bl, units::volt_t _br)
 {
-//   fl.SetVoltage(_fl);
-//   fr.SetVoltage(_fr);
-//   bl.SetVoltage(_bl);
-//   br.SetVoltage(_br);
+  fl.SetVoltage(_fl);
+  fr.SetVoltage(_fr);
+  bl.SetVoltage(_bl);
+  br.SetVoltage(_br);
 }
 
 void Mecanum::DriveJoystick(float lx, float ly, float rx)
 {
-  // Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
-  fl.Set(ly + lx + 2 * rx);
-  fr.Set(ly - lx - 2 * rx);
-  bl.Set(ly - lx + 2 * rx);
-  br.Set(ly + lx - 2 * rx);
+  Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
+  
+  // lx /= 4;
+  // fl.Set(ly + lx + 2 * rx);
+  // fr.Set(ly - lx - 2 * rx);
+  // bl.Set(ly - lx + 2 * rx);
+  // br.Set(ly + lx - 2 * rx);
 
-  s_fl.SetSpeed(ly + lx + 2 * rx);
-  s_fr.SetSpeed(ly - lx - 2 * rx);
-  s_bl.SetSpeed(ly - lx + 2 * rx);
-  s_br.SetSpeed(ly + lx - 2 * rx);
+  // s_fl.SetSpeed(ly + lx + 2 * rx);
+  // s_fr.SetSpeed(ly - lx - 2 * rx);
+  // s_bl.SetSpeed(ly - lx + 2 * rx);
+  // s_br.SetSpeed(ly + lx - 2 * rx);
 }
 
 // // counterclockwise, starting from the right. same as in math.
 float Mecanum::GetAngle()
 {
-  // float gyroAngle = gyro.GetAngle();
+  float gyroAngle = gyro.GetPitch();
   // extern float gyroOffset;
   // gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
-  // return gyroAngle;
-  return 0;                                                     // mathematical
+  return gyroAngle;
+  // return 0;                                                     // mathematical
 }
 
 units::degree_t Mecanum::GetAngleDegrees()

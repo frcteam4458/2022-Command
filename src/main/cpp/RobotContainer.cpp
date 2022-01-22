@@ -6,7 +6,7 @@
 RobotContainer::RobotContainer() : drive{},
                                    //intakeCommand{},
                                    teleop{&drive},
-                                   //autoDrive{&drive},
+                                   autoDrive{&drive},
 
                                    leftStick{0},
                                    rightStick{1},
@@ -27,7 +27,7 @@ void RobotContainer::ConfigureButtonBindings()
 frc2::Command *RobotContainer::GetAutonomousCommand()
 {
   // make this choose from shuffleboard input
-  return nullptr;
+  return &autoDrive;
 }
 
 frc2::Command *RobotContainer::GetTeleopCommand()

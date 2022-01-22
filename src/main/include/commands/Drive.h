@@ -2,10 +2,11 @@
 #ifndef DRIVE_H
 #define DRIVE_H
 
-#include <frc/Joystick.h>
+#include <frc/XboxController.h>
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
+#include <frc/Joystick.h>
 
 #include "subsystems/Mecanum.h"
 
@@ -18,6 +19,8 @@ public:
 
 private:
     Mecanum *m_drive;
+    frc::XboxController xboxController{0};
+
     frc::Joystick leftStick{0};
     frc::Joystick rightStick{1};
 

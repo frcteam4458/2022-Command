@@ -26,7 +26,7 @@ private:
   // Intake intakeCommand;
   Drive teleop;
 
-  // AutoDrive autoDrive;
+  AutoDrive autoDrive;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;
