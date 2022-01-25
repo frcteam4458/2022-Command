@@ -35,5 +35,5 @@ const units::meters_per_second_t MAX_SPEED{3.0f};
 // const units::meters_per_second_squared_t MAX_ACCEL{1.0f};
 const units::radians_per_second_t MAX_ROT_SPEED{PI * 2.0f};
 
-const units::meter_t ENCODER_DISTANCE_PER_PULSE{0.1f};
+const units::meter_t ENCODER_DISTANCE_PER_PULSE{0.001196947f};
 #endif

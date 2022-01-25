@@ -14,6 +14,8 @@
 
 #include <ctre/phoenix/sensors/PigeonIMU.h>
 
+#include <frc/controller/SimpleMotorFeedforward.h>
+
 class Mecanum : public frc2::SubsystemBase
 {
 public:
@@ -45,16 +47,20 @@ private:
   // frc::sim::EncoderSim s_blEncoder;
   // frc::sim::EncoderSim s_brEncoder;
 
-  // frc::Encoder flEncoder;
-  // frc::Encoder frEncoder;
-  // frc::Encoder blEncoder;
-  // frc::Encoder brEncoder;
+  frc::Encoder flEncoder;
+  frc::Encoder frEncoder;
+  frc::Encoder blEncoder;
+  frc::Encoder brEncoder;
 
   ctre::phoenix::sensors::PigeonIMU gyro;
 
   frc::MecanumDriveKinematics m_kinematics;
-  // frc::MecanumDriveOdometry m_odometry;
+  frc::MecanumDriveOdometry m_odometry;
+  frc::MecanumDriveOdometry m_predictedOdometry;
 
   frc::Pose2d pose;
+
+  // frc::SimpleMotorFeedforward fl{1.0f};
+
 };
 #endif

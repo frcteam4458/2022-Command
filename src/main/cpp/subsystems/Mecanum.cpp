@@ -15,6 +15,8 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
+#include <frc/Encoder.h>
+
 // note to future programmers: this is the worst file i promise
 
 Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
@@ -22,15 +24,16 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
                      bl{BACK_LEFT}, s_bl{BACK_LEFT},
                      br{BACK_RIGHT}, s_br{BACK_RIGHT},
 
-                     //flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
-                     //frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
-                     //blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
-                     //brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
+                     flEncoder{FRONT_LEFT_ENCODER[0], FRONT_LEFT_ENCODER[1]},
+                     frEncoder{FRONT_RIGHT_ENCODER[0], FRONT_RIGHT_ENCODER[1]},
+                     blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
+                     brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
 
                      gyro{1},
 
                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
-                     // m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}}
+                     m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
+                     m_predictedOdometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
                      pose{0_m, 0_m, 0_rad}
 {
   
@@ -58,18 +61,38 @@ void Mecanum::Periodic()
   frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
   frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
   frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
-
+  frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
+  frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
+// m_predictedOdometry.GetPose().Rotation
 }
+
+units::radian_t angle = 0_rad;
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
   frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vy, vx, omega, frc::Rotation2d(units::degree_t(0.0f)));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
+  
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
-  fl.Set(wheelSpeeds.frontLeft / MAX_SPEED); // dividing by MAX_SPEED normalizes them
-  fr.Set(wheelSpeeds.frontRight / MAX_SPEED);
-  bl.Set(wheelSpeeds.rearLeft / MAX_SPEED);
-  br.Set(wheelSpeeds.rearRight/ MAX_SPEED);
+
+  frc::Rotation2d angle = m_predictedOdometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{-wheelSpeeds.frontLeft, wheelSpeeds.frontRight, -wheelSpeeds.rearLeft, wheelSpeeds.rearRight}).Rotation();
+  frc::SmartDashboard::PutNumber("Predicted Angle:", angle.Degrees().value());
+  double correction = 0;
+
+  if(GetAngleDegrees().value() < angle.Degrees().value()) { // too far right
+    correction = abs(GetAngleDegrees().value() - angle.Degrees().value());
+  } else { // too far left
+    correction = -abs(GetAngleDegrees().value() - angle.Degrees().value());
+  }
+
+  correction = 0;
+
+  fl.Set(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()); // dividing by MAX_SPEED normalizes them
+  fr.Set(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value());
+  bl.Set(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value());
+  br.Set(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value());
   
   s_fl.SetSpeed(-wheelSpeeds.frontLeft / MAX_SPEED);
   s_fr.SetSpeed(wheelSpeeds.frontRight / MAX_SPEED);
