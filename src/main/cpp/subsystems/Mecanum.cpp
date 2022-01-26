@@ -59,6 +59,7 @@ void Mecanum::Periodic()
   // frc::MecanumDrive drive{fl, bl, fr, bl};
   // frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
   frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
   frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
   frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
   frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
@@ -68,7 +69,7 @@ void Mecanum::Periodic()
 // m_predictedOdometry.GetPose().Rotation
 }
 
-units::radian_t angle = 0_rad;
+double angle = 0;
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
@@ -76,18 +77,23 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
+  angle += (omega.value()/20)*(180/PI);
+  frc::SmartDashboard::PutNumber("Predicted Angle Delta: ", (omega.value()/20)*(180/PI));
+  frc::SmartDashboard::PutNumber("Predicted Angle:", angle);
 
-  frc::Rotation2d angle = m_predictedOdometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{-wheelSpeeds.frontLeft, wheelSpeeds.frontRight, -wheelSpeeds.rearLeft, wheelSpeeds.rearRight}).Rotation();
-  frc::SmartDashboard::PutNumber("Predicted Angle:", angle.Degrees().value());
   double correction = 0;
 
-  if(GetAngleDegrees().value() < angle.Degrees().value()) { // too far right
-    correction = abs(GetAngleDegrees().value() - angle.Degrees().value());
+  if(GetAngleDegrees().value() < angle) { // too far right
+    // correction = abs(GetAngleDegrees().value() - angle)/4;
+    correction = 1;
   } else { // too far left
-    correction = -abs(GetAngleDegrees().value() - angle.Degrees().value());
+    // correction = -abs(GetAngleDegrees().value() - angle)/4;
+    correction = -1;
   }
 
-  correction = 0;
+  // correction = 0;
+
+  correction *= (abs(GetAngle() - angle))/10;
 
   fl.Set(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()); // dividing by MAX_SPEED normalizes them
   fr.Set(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value());
@@ -127,7 +133,7 @@ void Mecanum::DriveJoystick(float lx, float ly, float rx)
 // // counterclockwise, starting from the right. same as in math.
 float Mecanum::GetAngle()
 {
-  float gyroAngle = gyro.GetPitch();
+  float gyroAngle = gyro.GetYaw();
   // extern float gyroOffset;
   // gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
   return gyroAngle;
