@@ -4,10 +4,12 @@
 #include <frc/shuffleboard/Shuffleboard.h>
 
 RobotContainer::RobotContainer() : drive{},
-                                   //intakeCommand{},
+                                   shooter{},
+
                                    teleop{&drive},
                                    autoDrive{&drive},
-
+                                   shooterCommand{&shooter},
+                                   
                                    leftStick{0},
                                    rightStick{1},
                                    secondPlayer{2},
@@ -34,6 +36,7 @@ frc2::Command *RobotContainer::GetTeleopCommand()
 {
   // same as above
   return &teleop;
+  // return &shooterCommand;
 }
 
 void RobotContainer::ShuffleBoard()

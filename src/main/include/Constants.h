@@ -24,6 +24,11 @@ const int INTAKE = 4;
 const int ELEVATOR = 0;
 const int FLY_WHEEL = 0;
 
+const int LEFT_SHOOTER = 4;
+const int RIGHT_SHOOTER = 5;
+
+const int SHOOTER = 4;
+
 const float PI = 3.141592653589;
 
 const frc::Translation2d FL{.254_m, 0.305_m};

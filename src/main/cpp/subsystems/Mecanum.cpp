@@ -17,6 +17,8 @@
 
 #include <frc/Encoder.h>
 
+#include <cstdint>
+
 // note to future programmers: this is the worst file i promise
 
 Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
@@ -43,6 +45,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   // do i invert the encoders? not sure
   // set distanceperpulse
   
+  gyro.SetYaw(0.0);
 }
 
 void Mecanum::Periodic()
@@ -73,17 +76,17 @@ double angle = 0;
 
 void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega)
 {
-  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vy, vx, omega, frc::Rotation2d(units::degree_t(0.0f)));
+  frc::ChassisSpeeds speeds = frc::ChassisSpeeds::FromFieldRelativeSpeeds(vy, -vx, omega, frc::Rotation2d(units::degree_t(0.0f)));
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
-  angle += (omega.value()/20)*(180/PI);
-  frc::SmartDashboard::PutNumber("Predicted Angle Delta: ", (omega.value()/20)*(180/PI));
+  angle -= (omega.value()/40)*(180/PI);
+  frc::SmartDashboard::PutNumber("Predicted Angle Delta: ", (omega.value()/10)*(180/PI));
   frc::SmartDashboard::PutNumber("Predicted Angle:", angle);
 
   double correction = 0;
 
-  if(GetAngleDegrees().value() < angle) { // too far right
+  if(gyro.GetYaw() < angle) { // too far right
     // correction = abs(GetAngleDegrees().value() - angle)/4;
     correction = 1;
   } else { // too far left
@@ -93,16 +96,20 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
 
   // correction = 0;
 
-  correction *= (abs(GetAngle() - angle))/10;
+  correction *= (abs(gyro.GetYaw() - angle))/15;
+  frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
+  frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
+  frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
+  frc::SmartDashboard::PutNumber("BR: ", std::clamp(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
 
-  fl.Set(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()); // dividing by MAX_SPEED normalizes them
-  fr.Set(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value());
-  bl.Set(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value());
-  br.Set(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value());
+  fl.Set(std::clamp((wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()), -1.0, 1.0)); // dividing by MAX_SPEED normalizes them
+  fr.Set(std::clamp((wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value()), -1.0, 1.0));
+  bl.Set(std::clamp((wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value()), -1.0, 1.0));
+  br.Set(std::clamp((wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value()), -1.0, 1.0));
   
   s_fl.SetSpeed(-wheelSpeeds.frontLeft / MAX_SPEED);
   s_fr.SetSpeed(wheelSpeeds.frontRight / MAX_SPEED);
-  s_bl.SetSpeed(-wheelSpeeds.rearLeft / MAX_SPEED);
+  s_bl.SetSpeed(-wheelSpeeds.rearLeft / MAX_SPEED);     
   s_br.SetSpeed(wheelSpeeds.rearRight / MAX_SPEED);
 }
 

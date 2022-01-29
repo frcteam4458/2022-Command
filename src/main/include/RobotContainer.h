@@ -8,8 +8,10 @@
 #include "commands/Drive.h"
 #include "commands/Intake.h"
 #include "subsystems/Mecanum.h"
+#include "subsystems/ShooterSubsystem.h"
 
 #include "commands/AutoDrive.h"
+#include "commands/ShooterCommand.h"
 
 class RobotContainer
 {
@@ -22,11 +24,12 @@ public:
 
 private:
   Mecanum drive;
-
+  ShooterSubsystem shooter;
   // Intake intakeCommand;
   Drive teleop;
-
   AutoDrive autoDrive;
+
+  ShooterCommand shooterCommand;
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;
