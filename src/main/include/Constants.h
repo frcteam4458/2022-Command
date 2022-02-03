@@ -20,14 +20,14 @@ const int BACK_RIGHT_ENCODER[] = {6, 7};
 
 const int GYRO = 0;
 
-const int INTAKE = 4;
-const int ELEVATOR = 0;
-const int FLY_WHEEL = 0;
-
-const int LEFT_SHOOTER = 4;
-const int RIGHT_SHOOTER = 5;
-
+const int INTAKE = 7;
 const int SHOOTER = 4;
+
+const int LEFT_SOLENOID = 8;
+const int RIGHT_SOLENOID = 9;
+
+const int LEFT_ARM = 5;
+const int RIGHT_ARM = 6;
 
 const float PI = 3.141592653589;
 

@@ -7,8 +7,10 @@
 
 #include "commands/Drive.h"
 #include "commands/Intake.h"
+#include "commands/SolenoidToggle.h"
 #include "subsystems/Mecanum.h"
 #include "subsystems/ShooterSubsystem.h"
+#include "subsystems/SolenoidSubsystem.h"
 
 #include "commands/AutoDrive.h"
 #include "commands/ShooterCommand.h"
@@ -25,17 +27,20 @@ public:
 private:
   Mecanum drive;
   ShooterSubsystem shooter;
-  // Intake intakeCommand;
+  SolenoidSubsystem solenoidSubsystem;
+
   Drive teleop;
   AutoDrive autoDrive;
-
   ShooterCommand shooterCommand;
+  SolenoidToggle solenoidToggle;
+
 
   frc::Joystick leftStick;
   frc::Joystick rightStick;
   frc::Joystick secondPlayer;
 
   frc2::JoystickButton intakeButton;
+  frc2::JoystickButton solenoidToggleButton;
 
   void ConfigureButtonBindings();
 };
