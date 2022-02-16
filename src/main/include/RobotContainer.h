@@ -6,14 +6,19 @@
 #include <frc2/command/Command.h>
 
 #include "commands/Drive.h"
-#include "commands/Intake.h"
 #include "commands/SolenoidToggle.h"
 #include "subsystems/Mecanum.h"
 #include "subsystems/ShooterSubsystem.h"
+#include "subsystems/HangSubsystem.h"
 #include "subsystems/SolenoidSubsystem.h"
+#include "subsystems/IntakeSubsystem.h"
+#include "subsystems/FeedSubsystem.h"
 
 #include "commands/AutoDrive.h"
+#include "commands/IntakeCommand.h"
 #include "commands/ShooterCommand.h"
+#include "commands/OuttakeCommand.h"
+#include "commands/FeedCommand.h"
 
 class RobotContainer
 {
@@ -25,22 +30,21 @@ public:
   void ShuffleBoard();
 
 private:
-  Mecanum drive;
-  ShooterSubsystem shooter;
-  SolenoidSubsystem solenoidSubsystem;
 
+  // subsystems
+  Mecanum driveSubsystem;
+  ShooterSubsystem shooterSubsystem;
+  IntakeSubsystem intakeSubsystem;
+  FeedSubsystem feedSubsystem;
+
+
+  // commands
   Drive teleop;
   AutoDrive autoDrive;
+  IntakeCommand intakeCommand;
+  OuttakeCommand outtakeCommand;
   ShooterCommand shooterCommand;
-  SolenoidToggle solenoidToggle;
-
-
-  frc::Joystick leftStick;
-  frc::Joystick rightStick;
-  frc::Joystick secondPlayer;
-
-  frc2::JoystickButton intakeButton;
-  frc2::JoystickButton solenoidToggleButton;
+  FeedCommand feedCommand;
 
   void ConfigureButtonBindings();
 };

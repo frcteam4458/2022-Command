@@ -2,9 +2,9 @@
 
 #include "Constants.h"
 
-ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}
+ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{SHOOTER_ENCDOER[0], SHOOTER_ENCDOER[1]}
 {
-    motor.SetInverted(true);
+    encoder.SetDistancePerPulse(1);
 }
 
 void ShooterSubsystem::Set(double power)
@@ -12,7 +12,6 @@ void ShooterSubsystem::Set(double power)
     motor.Set(power);
 }
 
-void ShooterSubsystem::Zero()
-{
-    motor.Set(0);
+double ShooterSubsystem::GetRPM() {
+    return encoder.GetRate();
 }

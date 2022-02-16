@@ -6,6 +6,8 @@
 
 #include "Global.h"
 
+#include <frc/DutyCycleEncoder.h>
+
 void Robot::RobotInit()
 {
   m_container.ShuffleBoard();
@@ -39,7 +41,8 @@ void Robot::TeleopInit()
     m_autonomousCommand->Cancel();
     m_autonomousCommand = nullptr;
   }
-  m_container.GetTeleopCommand()->Schedule();
+  // m_container.GetTeleopCommand()->Schedule();
+  
 }
 
 void Robot::TeleopPeriodic()

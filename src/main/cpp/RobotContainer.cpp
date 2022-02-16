@@ -1,34 +1,33 @@
 #include "RobotContainer.h"
 #include "Constants.h"
+#include "Controls.h"
 #include "frc2/command/CommandScheduler.h"
 #include <frc/shuffleboard/Shuffleboard.h>
 #include <frc/PneumaticsModuleType.h>
 
-RobotContainer::RobotContainer() : drive{},
-                                   shooter{},
-                                   solenoidSubsystem{frc::PneumaticsModuleType::CTREPCM},
+RobotContainer::RobotContainer() : driveSubsystem{},
+                                   shooterSubsystem{},
+                                   intakeSubsystem{},
+                                   feedSubsystem{},
 
-                                   teleop{&drive},
-                                   autoDrive{&drive},
-                                   shooterCommand{&shooter},
-                                   solenoidToggle{&solenoidSubsystem},
-                                   
-                                   leftStick{0},
-                                   rightStick{1},
-                                   secondPlayer{2},
-                                   
-                                   intakeButton{&leftStick, 0},
-                                   solenoidToggleButton{&leftStick, 1}
+
+                                   teleop{&driveSubsystem},
+                                   autoDrive{&driveSubsystem},
+                                   intakeCommand{&intakeSubsystem},
+                                   outtakeCommand{&intakeSubsystem},
+                                   shooterCommand{&shooterSubsystem},
+                                   feedCommand{&feedSubsystem}
 {
   ConfigureButtonBindings();
 }
 
 void RobotContainer::ConfigureButtonBindings()
 {
-  // drive.SetDefaultCommand(teleop);
-  // intakeButton.WhileHeld(intakeCommand);
-  
-  solenoidToggleButton.WhenPressed(solenoidToggle);
+  driveSubsystem.SetDefaultCommand(std::move(teleop));
+  shooterSubsystem.SetDefaultCommand(std::move(shooterCommand));
+  intakeButton.WhenHeld(std::move(intakeCommand));
+  outtakeButton.WhenHeld(std::move(outtakeCommand));
+  fireButton.WhenHeld(std::move(feedCommand));
 }
 
 
@@ -42,7 +41,6 @@ frc2::Command *RobotContainer::GetTeleopCommand()
 {
   // same as above
   return &teleop;
-  // return &shooterCommand;
 }
 
 void RobotContainer::ShuffleBoard()

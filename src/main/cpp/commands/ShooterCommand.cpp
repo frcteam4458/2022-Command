@@ -1,6 +1,8 @@
 #include "commands/ShooterCommand.h"
+#include <frc/Joystick.h>
+#include <frc/smartdashboard/SmartDashboard.h>
 
-ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsystem), rightStick{1}
+ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsystem)
 {
     
 }
@@ -23,9 +25,11 @@ void ShooterCommand::Execute() {
     }
 
     (*subsystem).Set(power);
-    // (*subsystem).SetRight(power);
+    
+    frc::SmartDashboard::PutNumber("RPM", (*subsystem).GetRPM());
+    
 }
 
-// void ShooterCommand::End(bool interrupted) {
-//     (*subsystem).Zero();
-// }
+void ShooterCommand::End(bool interrupted) {
+    (*subsystem).Set(0);
+}

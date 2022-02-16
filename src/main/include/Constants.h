@@ -8,6 +8,9 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+
+// physical IDs
+
 const int FRONT_LEFT = 0;
 const int FRONT_RIGHT = 1;
 const int BACK_LEFT = 2;
@@ -17,6 +20,8 @@ const int FRONT_LEFT_ENCODER[] = {0, 1};
 const int FRONT_RIGHT_ENCODER[] = {2, 3};
 const int BACK_LEFT_ENCODER[] = {4, 5};
 const int BACK_RIGHT_ENCODER[] = {6, 7};
+
+const int SHOOTER_ENCDOER[] = {8, 9};
 
 const int GYRO = 0;
 
@@ -28,8 +33,12 @@ const int RIGHT_SOLENOID = 9;
 
 const int LEFT_ARM = 5;
 const int RIGHT_ARM = 6;
+const int FEED_MOTOR = 10;
 
 const float PI = 3.141592653589;
+
+
+// motor locations
 
 const frc::Translation2d FL{.254_m, 0.305_m};
 const frc::Translation2d FR{.254_m, -0.305_m};

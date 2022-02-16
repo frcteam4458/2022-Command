@@ -15,13 +15,13 @@ public:
     explicit ShooterCommand(ShooterSubsystem *_subsystem);
 
     void Execute() override;
-    // void End(bool interrupted) override;
+    void End(bool interrupted) override;
 
 private:
+    // frc::Joystick joystick{0};
     ShooterSubsystem *subsystem;
+    double power = 0;
 
     frc::Joystick rightStick{1};
-
-    double power = 0;
 };
 #endif

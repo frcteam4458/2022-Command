@@ -10,13 +10,10 @@ class ShooterSubsystem : public frc2::SubsystemBase
 {
 public:
   ShooterSubsystem();
-  // void SetLeft(double power);
-  // void SetRight(double power);
   void Set(double power);
-  void Zero();
+  double GetRPM();
 private:
-  // frc::PWMSparkMax left;
-  // frc::PWMSparkMax right;
   frc::PWMSparkMax motor;
+  frc::Encoder encoder;
 };
 #endif
