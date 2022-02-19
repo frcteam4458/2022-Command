@@ -11,9 +11,9 @@ class LimitSubsystem : public frc2::SubsystemBase
 public:
     LimitSubsystem();
 
-    boolean IsFirstPressed();
-    boolean IsSecondPressed();
-    boolean IsBothPressed();
+    bool IsFirstPressed();
+    bool IsSecondPressed();
+    bool IsBothPressed();
 private:
     frc::DigitalInput first{FIRST_SWITCH};
     frc::DigitalInput second{SECOND_SWITCH};

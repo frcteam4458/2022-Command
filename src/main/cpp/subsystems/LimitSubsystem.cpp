@@ -3,14 +3,14 @@
 
 LimitSubsystem::LimitSubsystem() {}
 
-boolean LimitSubsystem::IsFirstPressed() {
+bool LimitSubsystem::IsFirstPressed() {
     return first.Get();
 }
 
-boolean LimitSubsystem::IsSecondPressed() {
+bool LimitSubsystem::IsSecondPressed() {
     return second.Get();
 }
 
-bolean LimitSubsystem::IsBothPressed() {
+bool LimitSubsystem::IsBothPressed() {
     return first.Get() && second.Get();
 }
