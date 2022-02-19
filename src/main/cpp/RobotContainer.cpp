@@ -9,6 +9,7 @@ RobotContainer::RobotContainer() : driveSubsystem{},
                                    shooterSubsystem{},
                                    intakeSubsystem{},
                                    feedSubsystem{},
+                                   limitSubsystem{},
 
 
                                    teleop{&driveSubsystem},
@@ -19,7 +20,8 @@ RobotContainer::RobotContainer() : driveSubsystem{},
                                    shooterSlowCommand{&shooterSubsystem, 3600.0},
                                    shooterStopCommand{&shooterSubsystem, 0.0f},
                                    feedCommand{&feedSubsystem, fireRotations},
-                                   feedTwiceCommand{&feedSubsystem, fireTwiceRotations}
+                                   feedTwiceCommand{&feedSubsystem, fireTwiceRotations},
+                                   limitCommand{&limitSubsystem}
 {
   ConfigureButtonBindings();
 }
@@ -33,6 +35,7 @@ void RobotContainer::ConfigureButtonBindings()
   intakeButton.WhenHeld(std::move(intakeCommand));
   outtakeButton.WhenHeld(std::move(outtakeCommand));
   fireButton.WhenHeld(std::move(feedCommand));
+  limitCommand.Schedule();
 }
 
 

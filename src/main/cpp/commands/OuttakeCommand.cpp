@@ -7,9 +7,9 @@ OuttakeCommand::OuttakeCommand(IntakeSubsystem *_subsystem) : subsystem(_subsyst
 }
 
 void OuttakeCommand::Execute() {
-    (*subsystem).Set(-1);
+    subsystem->Set(-1);
 }
 
 void OuttakeCommand::End(bool interrupted) {
-    (*subsystem).Set(0);
+    subsystem->Set(0);
 }

@@ -10,15 +10,15 @@ FeedCommand::FeedCommand(FeedSubsystem *_subsystem) : subsystem(_subsystem)
 FeedCommand::FeedCommand(FeedSubsystem *_subsystem, double _rotations) : subsystem(_subsystem)
 {
     rotations = _rotations;
-    finalPosition = (*subsystem).GetPosition() + rotations;
+    finalPosition = subsystem->GetPosition() + rotations;
 }
 
 void FeedCommand::Execute() {
-    (*subsystem).Set(1);
+    subsystem->Set(1);
 }
 
 void FeedCommand::End(bool interrupted) {
-    (*subsystem).Set(0);
+    subsystem->Set(0);
 }
 
 bool FeedCommand::IsFinished() {
@@ -26,7 +26,7 @@ bool FeedCommand::IsFinished() {
         return false;
     }
 
-    if((*subsystem).GetPosition() < finalPosition) {
+    if(subsystem->GetPosition() < finalPosition) {
         return false;
     }
 

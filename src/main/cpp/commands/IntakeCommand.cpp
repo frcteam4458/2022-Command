@@ -8,9 +8,9 @@ IntakeCommand::IntakeCommand(IntakeSubsystem *_subsystem) : subsystem(_subsystem
 }
 
 void IntakeCommand::Execute() {
-    (*subsystem).Set(1);
+    subsystem->Set(1);
 }
 
 void IntakeCommand::End(bool interrupted) {
-    (*subsystem).Set(0);
+    subsystem->Set(0);
 }

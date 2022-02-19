@@ -13,12 +13,14 @@
 #include "subsystems/SolenoidSubsystem.h"
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/FeedSubsystem.h"
+#include "subsystems/LimitSubsystem.h"
 
 #include "commands/AutoDrive.h"
 #include "commands/IntakeCommand.h"
 #include "commands/ShooterCommand.h"
 #include "commands/OuttakeCommand.h"
 #include "commands/FeedCommand.h"
+#include "commands/LimitCommand.h"
 
 class RobotContainer
 {
@@ -36,6 +38,7 @@ private:
   ShooterSubsystem shooterSubsystem;
   IntakeSubsystem intakeSubsystem;
   FeedSubsystem feedSubsystem;
+  LimitSubsystem limitSubsystem;
 
 
   // commands
@@ -48,6 +51,7 @@ private:
   ShooterCommand shooterStopCommand;
   FeedCommand feedCommand;
   FeedCommand feedTwiceCommand;
+  LimitCommand limitCommand;
 
   void ConfigureButtonBindings();
 };
