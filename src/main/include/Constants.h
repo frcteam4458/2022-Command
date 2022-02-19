@@ -16,24 +16,30 @@ const int FRONT_RIGHT = 1;
 const int BACK_LEFT = 2;
 const int BACK_RIGHT = 3;
 
+const int INTAKE = 4;
+const int FEED_MOTOR = 5;
+const int SHOOTER = 6;
+
+const int LIGHT = 9;
+
+
 const int FRONT_LEFT_ENCODER[] = {0, 1};
 const int FRONT_RIGHT_ENCODER[] = {2, 3};
 const int BACK_LEFT_ENCODER[] = {4, 5};
 const int BACK_RIGHT_ENCODER[] = {6, 7};
-
 const int SHOOTER_ENCDOER[] = {8, 9};
+const int FEED_ENCODER[] = {10, 11};
+
+const int FIRST_SWITCH = 12;
+const int SECOND_SWITCH = 13;
 
 const int GYRO = 0;
-
-const int INTAKE = 7;
-const int SHOOTER = 4;
 
 const int LEFT_SOLENOID = 8;
 const int RIGHT_SOLENOID = 9;
 
 const int LEFT_ARM = 5;
 const int RIGHT_ARM = 6;
-const int FEED_MOTOR = 10;
 
 const float PI = 3.141592653589;
 
@@ -44,6 +50,9 @@ const frc::Translation2d FL{.254_m, 0.305_m};
 const frc::Translation2d FR{.254_m, -0.305_m};
 const frc::Translation2d BL{-.254_m, 0.305_m};
 const frc::Translation2d BR{-.254_m, -0.305_m};
+
+const double fireRotations = 1;
+const double fireTwiceRotations = 2;
 
 const units::meters_per_second_t MAX_SPEED{3.0f};
 // const units::meters_per_second_squared_t MAX_ACCEL{1.0f};

@@ -1,35 +1,36 @@
 #include "commands/ShooterCommand.h"
 #include <frc/Joystick.h>
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <algorithm>
 
 ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsystem)
 {
-    
+    power = (*subsystem).Get();
+    AddRequirements(subsystem);
+}
+
+ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, float _power)
+{
+    power = _power;
+}
+
+ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm)
+{
+    rpm = _rpm;
 }
 
 void ShooterCommand::Execute() {
-    if(rightStick.GetRawButton(7)) {
-        power = 1.0/6.0;
-    } else if(rightStick.GetRawButton(8)) {
-        power = 2.0/6.0;
-    } else if(rightStick.GetRawButton(9)) {
-        power = 3.0/6.0;
-    } else if(rightStick.GetRawButton(10)) {
-        power = 4.0/6.0;
-    } else if(rightStick.GetRawButton(11)) {
-        power = 5.0/6.0;
-    } else if(rightStick.GetRawButton(12)) {
-        power = 1;
-    } else {
-        power = 0;
+    if(rpm == -2) {
+        (*subsystem).Set(power);
+        frc::SmartDashboard::PutNumber("RPM", (*subsystem).GetRPM());
+        return;
     }
 
-    (*subsystem).Set(power);
-    
-    frc::SmartDashboard::PutNumber("RPM", (*subsystem).GetRPM());
-    
+    error = rpm - (*subsystem).GetRPM();
+    (*subsystem).Set(std::clamp((*subsystem).Get() + 0.05 * error, -1.0, 1.0));
+
 }
 
 void ShooterCommand::End(bool interrupted) {
-    (*subsystem).Set(0);
+    // (*subsystem).Set(0);
 }

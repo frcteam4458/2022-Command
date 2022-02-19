@@ -1,6 +1,8 @@
 #include "commands/Drive.h"
 
-Drive::Drive(Mecanum *drive) : m_drive(drive) {}
+Drive::Drive(Mecanum *drive) : m_drive(drive) {
+	AddRequirements(drive);
+}
 
 void Drive::Execute()
 {

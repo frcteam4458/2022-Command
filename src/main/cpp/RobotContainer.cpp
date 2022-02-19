@@ -15,8 +15,11 @@ RobotContainer::RobotContainer() : driveSubsystem{},
                                    autoDrive{&driveSubsystem},
                                    intakeCommand{&intakeSubsystem},
                                    outtakeCommand{&intakeSubsystem},
-                                   shooterCommand{&shooterSubsystem},
-                                   feedCommand{&feedSubsystem}
+                                   shooterFastCommand{&shooterSubsystem, 4800.0},
+                                   shooterSlowCommand{&shooterSubsystem, 3600.0},
+                                   shooterStopCommand{&shooterSubsystem, 0.0f},
+                                   feedCommand{&feedSubsystem, fireRotations},
+                                   feedTwiceCommand{&feedSubsystem, fireTwiceRotations}
 {
   ConfigureButtonBindings();
 }
@@ -24,7 +27,9 @@ RobotContainer::RobotContainer() : driveSubsystem{},
 void RobotContainer::ConfigureButtonBindings()
 {
   driveSubsystem.SetDefaultCommand(std::move(teleop));
-  shooterSubsystem.SetDefaultCommand(std::move(shooterCommand));
+  flywheelFastButton.ToggleWhenPressed(std::move(shooterFastCommand));
+  flywheelSlowButton.ToggleWhenPressed(std::move(shooterSlowCommand));
+  flywheelStopButton.WhenPressed(std::move(shooterStopCommand));
   intakeButton.WhenHeld(std::move(intakeCommand));
   outtakeButton.WhenHeld(std::move(outtakeCommand));
   fireButton.WhenHeld(std::move(feedCommand));

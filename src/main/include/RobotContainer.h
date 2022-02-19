@@ -43,8 +43,11 @@ private:
   AutoDrive autoDrive;
   IntakeCommand intakeCommand;
   OuttakeCommand outtakeCommand;
-  ShooterCommand shooterCommand;
+  ShooterCommand shooterFastCommand;
+  ShooterCommand shooterSlowCommand;
+  ShooterCommand shooterStopCommand;
   FeedCommand feedCommand;
+  FeedCommand feedTwiceCommand;
 
   void ConfigureButtonBindings();
 };

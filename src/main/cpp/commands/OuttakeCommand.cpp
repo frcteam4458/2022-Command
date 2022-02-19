@@ -3,7 +3,7 @@
 
 OuttakeCommand::OuttakeCommand(IntakeSubsystem *_subsystem) : subsystem(_subsystem)
 {
-    
+    AddRequirements(subsystem);
 }
 
 void OuttakeCommand::Execute() {

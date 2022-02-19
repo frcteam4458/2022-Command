@@ -4,7 +4,13 @@
 
 FeedCommand::FeedCommand(FeedSubsystem *_subsystem) : subsystem(_subsystem)
 {
-    
+    AddRequirements(subsystem);
+}
+
+FeedCommand::FeedCommand(FeedSubsystem *_subsystem, double _rotations) : subsystem(_subsystem)
+{
+    rotations = _rotations;
+    finalPosition = (*subsystem).GetPosition() + rotations;
 }
 
 void FeedCommand::Execute() {
@@ -13,4 +19,16 @@ void FeedCommand::Execute() {
 
 void FeedCommand::End(bool interrupted) {
     (*subsystem).Set(0);
+}
+
+bool FeedCommand::IsFinished() {
+    if(std::isnan(rotations)) {
+        return false;
+    }
+
+    if((*subsystem).GetPosition() < finalPosition) {
+        return false;
+    }
+
+    return true;
 }

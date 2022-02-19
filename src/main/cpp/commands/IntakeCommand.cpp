@@ -4,7 +4,7 @@
 
 IntakeCommand::IntakeCommand(IntakeSubsystem *_subsystem) : subsystem(_subsystem)
 {
-    
+    AddRequirements(subsystem);
 }
 
 void IntakeCommand::Execute() {
