@@ -17,6 +17,7 @@ public:
     explicit ShooterCommand(ShooterSubsystem *_subsystem, double _rpm);
 
     void Execute() override;
+    bool IsFinished() override;
     void End(bool interrupted) override;
 
 private:
@@ -24,7 +25,5 @@ private:
     float power = -2;
     double rpm = -2;
     double error = 0;
-
-    frc::Joystick rightStick{1};
 };
 #endif

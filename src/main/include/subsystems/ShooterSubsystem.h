@@ -11,12 +11,16 @@ class ShooterSubsystem : public frc2::SubsystemBase
 {
 public:
   ShooterSubsystem();
+  void Periodic() override;
   void Set(double power);
+  void SetRPM(double _rpm);
   double Get();
   double GetRPM();
+  double GetTargetRPM();
 private:
   frc::PWMSparkMax motor;
   frc::Encoder encoder;
   frc::sim::PWMSim s_motor;
+  double rpm = 0;
 };
 #endif

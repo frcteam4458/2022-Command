@@ -2,6 +2,7 @@
 #include <frc/Joystick.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <algorithm>
+#include <math.h>
 
 ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsystem)
 {
@@ -9,28 +10,28 @@ ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsys
     AddRequirements(subsystem);
 }
 
-ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, float _power)
+ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, float _power) : subsystem(_subsystem)
 {
     power = _power;
 }
 
-ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm)
+ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm) : subsystem(_subsystem)
 {
     rpm = _rpm;
+    subsystem->SetRPM(rpm);
 }
 
 void ShooterCommand::Execute() {
-    if(rpm == -2) {
-        subsystem->Set(power);
-        frc::SmartDashboard::PutNumber("RPM", (*subsystem).GetRPM());
-        return;
-    }
-
-    error = rpm - subsystem->GetRPM();
-    subsystem->Set(std::clamp(subsystem->Get() + 0.05 * error, -1.0, 1.0));
 
 }
 
+bool ShooterCommand::IsFinished() {
+    if(abs(subsystem->GetRPM() - subsystem->GetTargetRPM()) < subsystem->GetTargetRPM()*0.025) {
+        return true;
+    }
+    return false;
+}
+
 void ShooterCommand::End(bool interrupted) {
-    // (*subsystem).Set(0);
+    
 }

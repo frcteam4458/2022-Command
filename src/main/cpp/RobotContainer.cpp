@@ -35,7 +35,7 @@ void RobotContainer::ConfigureButtonBindings()
   intakeButton.WhenHeld(std::move(intakeCommand));
   outtakeButton.WhenHeld(std::move(outtakeCommand));
   fireButton.WhenHeld(std::move(feedCommand));
-  limitCommand.Schedule();
+  // limitCommand.Schedule();
 }
 
 

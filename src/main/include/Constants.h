@@ -30,8 +30,8 @@ const int BACK_RIGHT_ENCODER[] = {6, 7};
 const int SHOOTER_ENCDOER[] = {8, 9};
 const int FEED_ENCODER[] = {10, 11};
 
-const int FIRST_SWITCH = 12;
-const int SECOND_SWITCH = 13;
+const int FIRST_SWITCH = 8;
+const int SECOND_SWITCH = 9;
 
 const int GYRO = 0;
 

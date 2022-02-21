@@ -57,18 +57,17 @@ void Mecanum::Periodic()
 
   // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
 
-  
-  // frc::Shuffleboard::SelectTab("Telemetry");
-  // frc::MecanumDrive drive{fl, bl, fr, bl};
-  // frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
-  frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
-  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
-  frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
-  frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
-  frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
-  frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
-  frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
-  frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
+  frc::MecanumDrive drive{fl, bl, fr, bl};
+  // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
+  // frc::ShuffleboPard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
+  // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  // frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
+  // frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
+  // frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
+  // frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
+  // frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
+  // frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
+  // frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
 // m_predictedOdometry.GetPose().Rotation
 }
 
@@ -95,10 +94,10 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   // correction = 0; // nullifies correction (or zero-ifies)
 
   correction *= (abs(gyro.GetYaw() - angle) * .1);
-  frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
-  frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
-  frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
-  frc::SmartDashboard::PutNumber("BR: ", std::clamp(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
+  // frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
+  // frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
+  // frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
+  // frc::SmartDashboard::PutNumber("BR: ", std::clamp(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
 
   fl.Set(std::clamp((wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()), -1.0, 1.0)); // dividing by MAX_SPEED normalizes them
   fr.Set(std::clamp((wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value()), -1.0, 1.0));
