@@ -16,7 +16,7 @@ public:
     explicit ShooterCommand(ShooterSubsystem *_subsystem, float _power);
     explicit ShooterCommand(ShooterSubsystem *_subsystem, double _rpm);
 
-    void Execute() override;
+    void Initialize() override;
     bool IsFinished() override;
     void End(bool interrupted) override;
 

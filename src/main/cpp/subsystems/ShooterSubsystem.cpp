@@ -2,15 +2,31 @@
 
 #include "Constants.h"
 
-ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{SHOOTER_ENCDOER[0], SHOOTER_ENCDOER[1]}, s_motor{SHOOTER}
+#include <frc/smartdashboard/SmartDashboard.h>
+
+ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{SHOOTER_ENCDOER}, s_motor{SHOOTER}, s_encoder{encoder}
 {
-    encoder.SetDistancePerPulse(1);
+    encoder.SetDistancePerRotation(1);
 }
 
 void ShooterSubsystem::Periodic() {
-    if(GetRPM() < GetTargetRPM()) {
-        motor.Set(motor.Get() + (GetTargetRPM() - GetRPM()) * 0.05);
+    encoderRpm = (encoder.GetDistance() - encoderPrev)/0.02*60;
+
+    encoderPrev = encoder.GetDistance();
+
+    if(GetRPM() != GetTargetRPM()) {
+        motor.Set(motor.Get() + (GetTargetRPM() - GetRPM()) * 0.00005);
+        s_motor.SetSpeed(motor.Get());
     }
+
+    frc::SmartDashboard::PutNumber("Shooter Encoder", encoder.GetDistance());
+    frc::SmartDashboard::PutNumber("RPM", encoderRpm);
+    frc::SmartDashboard::PutNumber("Target RPM", rpm);
+}
+
+void ShooterSubsystem::SimulationPeriodic() {
+    distance += motor.Get()*1.8; // so motor=1 makes 5000rpm
+    s_encoder.SetDistance(distance);
 }
 
 void ShooterSubsystem::Set(double power)
@@ -29,7 +45,7 @@ double ShooterSubsystem::Get()
 }
 
 double ShooterSubsystem::GetRPM() {
-    return encoder.GetRate();
+    return encoderRpm;
 }
 
 double ShooterSubsystem::GetTargetRPM() {

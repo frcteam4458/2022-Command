@@ -27,16 +27,13 @@ const int FRONT_LEFT_ENCODER[] = {0, 1};
 const int FRONT_RIGHT_ENCODER[] = {2, 3};
 const int BACK_LEFT_ENCODER[] = {4, 5};
 const int BACK_RIGHT_ENCODER[] = {6, 7};
-const int SHOOTER_ENCDOER[] = {8, 9};
 const int FEED_ENCODER[] = {10, 11};
+const int SHOOTER_ENCDOER = 12; // uses ports 12, 13, 14, 15
 
 const int FIRST_SWITCH = 8;
 const int SECOND_SWITCH = 9;
 
 const int GYRO = 0;
-
-const int LEFT_SOLENOID = 8;
-const int RIGHT_SOLENOID = 9;
 
 const int LEFT_ARM = 5;
 const int RIGHT_ARM = 6;
@@ -53,6 +50,8 @@ const frc::Translation2d BR{-.254_m, -0.305_m};
 
 const double fireRotations = 1;
 const double fireTwiceRotations = 2;
+
+const double FLYWHEEL_PERCENT_MARGIN = 0.05;
 
 const units::meters_per_second_t MAX_SPEED{3.0f};
 // const units::meters_per_second_squared_t MAX_ACCEL{1.0f};

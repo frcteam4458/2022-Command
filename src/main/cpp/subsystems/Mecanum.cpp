@@ -57,7 +57,7 @@ void Mecanum::Periodic()
 
   // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
 
-  frc::MecanumDrive drive{fl, bl, fr, bl};
+  // frc::MecanumDrive drive{fl, bl, fr, bl};
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
   // frc::ShuffleboPard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
   // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
@@ -80,8 +80,8 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   angle -= (omega.value()/40)*(180/PI);
-  frc::SmartDashboard::PutNumber("Predicted Angle Delta: ", (omega.value()/10)*(180/PI));
-  frc::SmartDashboard::PutNumber("Predicted Angle:", angle);
+  // frc::SmartDashboard::PutNumber("Predicted Angle Delta: ", (omega.value()/10)*(180/PI));
+  // frc::SmartDashboard::PutNumber("Predicted Angle:", angle);
 
   double correction = 0;
 
@@ -99,15 +99,15 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   // frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("BR: ", std::clamp(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
 
-  fl.Set(std::clamp((wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()), -1.0, 1.0)); // dividing by MAX_SPEED normalizes them
-  fr.Set(std::clamp((wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value()), -1.0, 1.0));
-  bl.Set(std::clamp((wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value()), -1.0, 1.0));
-  br.Set(std::clamp((wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value()), -1.0, 1.0));
+  fl.Set(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value()); // dividing by MAX_SPEED normalizes them
+  fr.Set(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value());
+  bl.Set(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value());
+  br.Set(wheelSpeeds.rearRight.value() - correction / MAX_SPEED.value());
   
-  s_fl.SetSpeed(-wheelSpeeds.frontLeft / MAX_SPEED);
-  s_fr.SetSpeed(wheelSpeeds.frontRight / MAX_SPEED);
-  s_bl.SetSpeed(-wheelSpeeds.rearLeft / MAX_SPEED);     
-  s_br.SetSpeed(wheelSpeeds.rearRight / MAX_SPEED);
+  s_fl.SetSpeed(-wheelSpeeds.frontLeft.value() / MAX_SPEED.value());
+  s_fr.SetSpeed(wheelSpeeds.frontRight.value() / MAX_SPEED.value());
+  s_bl.SetSpeed(-wheelSpeeds.rearLeft.value() / MAX_SPEED.value());
+  s_br.SetSpeed(wheelSpeeds.rearRight.value() / MAX_SPEED.value());
 }
 
 void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t _bl, units::volt_t _br)

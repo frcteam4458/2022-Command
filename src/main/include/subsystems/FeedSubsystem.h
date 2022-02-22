@@ -15,6 +15,8 @@ public:
     void Set(double power);
     double GetPosition();
 
+    void SimulationPeriodic() override;
+
 private:
     frc::PWMSparkMax feedMotor;
     frc::sim::PWMSim s_feedMotor;

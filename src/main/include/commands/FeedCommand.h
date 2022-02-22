@@ -17,6 +17,7 @@ public:
     explicit FeedCommand(FeedSubsystem *_subsystem);
     explicit FeedCommand(FeedSubsystem *_subsystem, double _rotations);
 
+    void Initialize() override;
     void Execute() override;
     void End(bool interrupted) override;
     bool IsFinished() override;

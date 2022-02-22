@@ -18,18 +18,17 @@ ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, float _power) : sub
 ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm) : subsystem(_subsystem)
 {
     rpm = _rpm;
+}
+
+void ShooterCommand::Initialize() {
     subsystem->SetRPM(rpm);
 }
 
-void ShooterCommand::Execute() {
-
-}
-
 bool ShooterCommand::IsFinished() {
-    if(abs(subsystem->GetRPM() - subsystem->GetTargetRPM()) < subsystem->GetTargetRPM()*0.025) {
+    // if(abs(subsystem->GetRPM() - subsystem->GetTargetRPM()) < subsystem->GetTargetRPM()*0.025) {
         return true;
-    }
-    return false;
+    // }
+    // return false;
 }
 
 void ShooterCommand::End(bool interrupted) {

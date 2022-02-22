@@ -14,6 +14,7 @@ public:
     bool IsFirstPressed();
     bool IsSecondPressed();
     bool IsBothPressed();
+    void Periodic() override;
 private:
     frc::DigitalInput first{FIRST_SWITCH};
     frc::DigitalInput second{SECOND_SWITCH};

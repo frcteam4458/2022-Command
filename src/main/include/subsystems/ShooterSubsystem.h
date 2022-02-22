@@ -4,7 +4,8 @@
 
 #include <frc2/command/SubsystemBase.h>
 #include <frc/motorcontrol/PWMSparkMax.h>
-#include <frc/Encoder.h>
+#include <frc/DutyCycleEncoder.h>
+#include <frc/simulation/DutyCycleEncoderSim.h>
 #include <frc/simulation/PWMSim.h>
 
 class ShooterSubsystem : public frc2::SubsystemBase
@@ -12,6 +13,7 @@ class ShooterSubsystem : public frc2::SubsystemBase
 public:
   ShooterSubsystem();
   void Periodic() override;
+  void SimulationPeriodic() override;
   void Set(double power);
   void SetRPM(double _rpm);
   double Get();
@@ -19,8 +21,12 @@ public:
   double GetTargetRPM();
 private:
   frc::PWMSparkMax motor;
-  frc::Encoder encoder;
+  frc::DutyCycleEncoder encoder;
   frc::sim::PWMSim s_motor;
+  frc::sim::DutyCycleEncoderSim s_encoder;
   double rpm = 0;
+  double encoderRpm = 0;
+  double encoderPrev = 0;
+  double distance = 0; // for sim
 };
 #endif

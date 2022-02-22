@@ -9,22 +9,31 @@ FeedCommand::FeedCommand(FeedSubsystem *_subsystem) : subsystem(_subsystem)
 
 FeedCommand::FeedCommand(FeedSubsystem *_subsystem, double _rotations) : subsystem(_subsystem)
 {
+    AddRequirements(subsystem);
     rotations = _rotations;
     finalPosition = subsystem->GetPosition() + rotations;
 }
 
+void FeedCommand::Initialize() {
+    frc::SmartDashboard::PutString("Feed command initailize", "t");
+}
+
 void FeedCommand::Execute() {
     subsystem->Set(1);
+    frc::SmartDashboard::PutString("Feed command run", "t");
+
 }
+
 
 void FeedCommand::End(bool interrupted) {
     subsystem->Set(0);
+    frc::SmartDashboard::PutString("Feed command end", "t");
 }
 
 bool FeedCommand::IsFinished() {
-    if(std::isnan(rotations)) {
-        return false;
-    }
+    // if(std::isnan(rotations)) {
+    //     return true;
+    // }
 
     if(subsystem->GetPosition() < finalPosition) {
         return false;
