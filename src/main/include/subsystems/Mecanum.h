@@ -22,12 +22,13 @@ public:
   Mecanum();
   void Periodic() override;
   void Drive(units::meters_per_second_t vx, units::meters_per_second_t vy, units::radians_per_second_t omega);
-  void DriveJoystick(float lx, float ly, float rx);
+  void DriveJoystick(float lx, float ly, float rx, float deadzone);
   void DriveVoltages(units::volt_t fl, units::volt_t fr, units::volt_t bl, units::volt_t br);
 
   float GetAngle();
   units::degree_t GetAngleDegrees();
   units::radian_t GetAngleRadians();
+  void ResetAngle();
 
   frc::Pose2d GetPose();
 

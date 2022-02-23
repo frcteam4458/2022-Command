@@ -31,7 +31,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
                      blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
                      brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
 
-                     gyro{1},
+                     gyro{0},
 
                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
                      m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
@@ -93,7 +93,7 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
 
   // correction = 0; // nullifies correction (or zero-ifies)
 
-  correction *= (abs(gyro.GetYaw() - angle) * .1);
+  correction *= (abs(gyro.GetYaw() - angle) * .05);
   // frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
@@ -118,8 +118,13 @@ void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t 
   br.SetVoltage(_br);
 }
 
-void Mecanum::DriveJoystick(float lx, float ly, float rx)
+void Mecanum::DriveJoystick(float lx, float ly, float rx, float deadzone)
 {
+  if(abs(lx) < deadzone && abs(ly) < deadzone && abs(rx) < deadzone) {
+    Mecanum::DriveVoltages(units::volt_t(0), units::volt_t(0), units::volt_t(0), units::volt_t(0));
+    return;
+  }
+
   Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
   
   // lx /= 4;
@@ -152,6 +157,11 @@ units::degree_t Mecanum::GetAngleDegrees()
 units::radian_t Mecanum::GetAngleRadians()
 {
   return units::radian_t{GetAngle() / (180/PI)};
+}
+
+void Mecanum::ResetAngle() {
+  gyro.SetYaw(0);
+  angle = 0;
 }
 
 frc::Pose2d Mecanum::GetPose()

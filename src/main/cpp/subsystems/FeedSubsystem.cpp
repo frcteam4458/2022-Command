@@ -6,6 +6,7 @@ FeedSubsystem::FeedSubsystem() : feedMotor{FEED_MOTOR}, encoder{FEED_ENCODER[0],
 {
     // DISTANCE PER PULSE
     encoder.SetDistancePerPulse(1);
+    feedMotor.SetInverted(true);
 }
 
 void FeedSubsystem::Set(double power)

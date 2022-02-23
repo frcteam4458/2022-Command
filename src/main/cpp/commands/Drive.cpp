@@ -4,13 +4,13 @@ Drive::Drive(Mecanum *drive) : m_drive(drive) {
 	AddRequirements(drive);
 }
 
+void Drive::Initialize() {
+	m_drive->ResetAngle();	
+}
+
 void Drive::Execute()
 {
 	double rx = rightStick.GetX();
-	if(rx < 0.05 && rx > -0.05) rx = 0;
-	m_drive->DriveJoystick(-leftStick.GetX(), leftStick.GetY(), rx);
-	// fl.Set(1);
-	// fr.Set(1);
-	// bl.Set(1);
-	// br.Set(1);
+	// if(rx < 0.05 && rx > -0.05) rx = 0;
+	// m_drive->DriveJoystick(-leftStick.GetX(), leftStick.GetY(), rx, 0.05); // 0.05 deadzone
 }

@@ -11,7 +11,6 @@ FireCommand::FireCommand(LimitSubsystem *subsystem, IntakeCommand intakeCommand,
 }
 double a = 0;
 void FireCommand::Execute() {
-    frc::SmartDashboard::PutNumber("Firing frame", a++);
 }
 
 void FireCommand::End(bool interrupted) {

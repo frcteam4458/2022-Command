@@ -15,6 +15,7 @@ class Drive : public frc2::CommandHelper<frc2::CommandBase, Drive>
 public:
     explicit Drive(Mecanum *drive);
 
+    void Initialize() override;
     void Execute() override;
 
 private:

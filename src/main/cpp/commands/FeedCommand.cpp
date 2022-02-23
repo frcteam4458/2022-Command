@@ -15,19 +15,16 @@ FeedCommand::FeedCommand(FeedSubsystem *_subsystem, double _rotations) : subsyst
 }
 
 void FeedCommand::Initialize() {
-    frc::SmartDashboard::PutString("Feed command initailize", "t");
 }
 
 void FeedCommand::Execute() {
     subsystem->Set(1);
-    frc::SmartDashboard::PutString("Feed command run", "t");
 
 }
 
 
 void FeedCommand::End(bool interrupted) {
     subsystem->Set(0);
-    frc::SmartDashboard::PutString("Feed command end", "t");
 }
 
 bool FeedCommand::IsFinished() {
@@ -35,9 +32,9 @@ bool FeedCommand::IsFinished() {
     //     return true;
     // }
 
-    if(subsystem->GetPosition() < finalPosition) {
+    // if(subsystem->GetPosition() < finalPosition) {
         return false;
-    }
+    // }
 
-    return true;
+    // return true;
 }

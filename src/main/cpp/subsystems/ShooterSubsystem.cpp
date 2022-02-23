@@ -10,6 +10,8 @@ ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{SHOOTER_ENCDOER},
 }
 
 void ShooterSubsystem::Periodic() {
+    motor.Set(1);
+    frc::SmartDashboard::PutNumber("Flywheel Power", motor.Get());
     encoderRpm = (encoder.GetDistance() - encoderPrev)/0.02*60;
 
     encoderPrev = encoder.GetDistance();

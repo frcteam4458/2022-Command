@@ -37,6 +37,7 @@ void RobotContainer::ConfigureButtonBindings()
   flywheelStopButton.WhenPressed(std::move(shooterStopCommand));
   intakeButton.WhenHeld(std::move(intakeCommand));
   outtakeButton.WhenHeld(std::move(outtakeCommand));
+  fireButton.WhenHeld(std::move(feedCommand));
   // fireButton.WhenHeld(std::move(feedCommand));
   // limitCommand.Schedule();
   // fireButton.WhenPressed(std::move(fireCommand));
