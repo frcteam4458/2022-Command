@@ -12,5 +12,5 @@ void Drive::Execute()
 {
 	double rx = rightStick.GetX();
 	// if(rx < 0.05 && rx > -0.05) rx = 0;
-	// m_drive->DriveJoystick(-leftStick.GetX(), leftStick.GetY(), rx, 0.05); // 0.05 deadzone
+	m_drive->DriveJoystick(-leftStick.GetX(), leftStick.GetY(), rx, 0.05); // 0.05 deadzone
 }
