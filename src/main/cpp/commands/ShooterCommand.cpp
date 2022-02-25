@@ -13,6 +13,7 @@ ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem) : subsystem(_subsys
 ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, float _power) : subsystem(_subsystem)
 {
     power = _power;
+    rpm = NAN;
 }
 
 ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm) : subsystem(_subsystem)
@@ -21,6 +22,9 @@ ShooterCommand::ShooterCommand(ShooterSubsystem *_subsystem, double _rpm) : subs
 }
 
 void ShooterCommand::Initialize() {
+    if(std::isnan(rpm)) {
+        subsystem->Set(power);
+    }
     subsystem->SetRPM(rpm);
 }
 

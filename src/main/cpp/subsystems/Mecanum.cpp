@@ -41,6 +41,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   
   fl.SetInverted(true);
   bl.SetInverted(true);
+  fr.SetInverted(true);
   // wpi::outs() << "sfidsjsdoi";
   // do i invert the encoders? not sure
   // set distanceperpulse
@@ -60,14 +61,18 @@ void Mecanum::Periodic()
   // frc::MecanumDrive drive{fl, bl, fr, bl};
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
   // frc::ShuffleboPard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive);
-  // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
-  // frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
+  frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
   // frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
   // frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
   // frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
+  // frc::SmartDashboard::PutNumber("Front Left", fl.Get());
+  // frc::SmartDashboard::PutNumber("Front Right", fr.Get());
+  // frc::SmartDashboard::PutNumber("Back Left", bl.Get());
+  // frc::SmartDashboard::PutNumber("Back Right", br.Get());
 // m_predictedOdometry.GetPose().Rotation
 }
 
@@ -91,7 +96,7 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
     correction = -1;
   }
 
-  // correction = 0; // nullifies correction (or zero-ifies)
+  correction = 0; // nullifies correction (or zero-ifies)
 
   correction *= (abs(gyro.GetYaw() - angle) * .05);
   // frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));

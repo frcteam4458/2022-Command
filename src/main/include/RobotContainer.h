@@ -47,7 +47,7 @@ private:
   IntakeCommand intakeCommand;
   OuttakeCommand outtakeCommand;
   ShooterCommand shooterFastCommand;
-  // ShooterCommand shooterSlowCommand;
+  ShooterCommand shooterSlowCommand;
   ShooterCommand shooterStopCommand;
   FeedCommand feedCommand;
   FeedCommand feedTwiceCommand;

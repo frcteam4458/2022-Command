@@ -17,4 +17,4 @@ class FlywheelWaitCommand : public frc2::CommandHelper<frc2::CommandBase, Flywhe
     private:
     ShooterSubsystem *subsystem;
 };
-#endif;
+#endif

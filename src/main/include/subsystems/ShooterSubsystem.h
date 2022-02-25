@@ -8,6 +8,9 @@
 #include <frc/simulation/DutyCycleEncoderSim.h>
 #include <frc/simulation/PWMSim.h>
 
+#include <cmath>
+#include <math.h>
+
 class ShooterSubsystem : public frc2::SubsystemBase
 {
 public:
@@ -24,7 +27,7 @@ private:
   frc::DutyCycleEncoder encoder;
   frc::sim::PWMSim s_motor;
   frc::sim::DutyCycleEncoderSim s_encoder;
-  double rpm = 0;
+  double rpm = NAN;
   double encoderRpm = 0;
   double encoderPrev = 0;
   double distance = 0; // for sim

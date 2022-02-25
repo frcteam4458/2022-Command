@@ -9,6 +9,9 @@
 
 #include <frc/Joystick.h>
 
+#include <cmath>
+#include <math.h>
+
 class ShooterCommand : public frc2::CommandHelper<frc2::CommandBase, ShooterCommand>
 {
 public:
@@ -23,7 +26,7 @@ public:
 private:
     ShooterSubsystem *subsystem;
     float power = -2;
-    double rpm = -2;
+    double rpm = NAN;
     double error = 0;
 };
 #endif

@@ -1,15 +1,18 @@
 #include "commands/OuttakeCommand.h"
 #include <frc/Joystick.h>
 
-OuttakeCommand::OuttakeCommand(IntakeSubsystem *_subsystem) : subsystem(_subsystem)
+OuttakeCommand::OuttakeCommand(IntakeSubsystem *_intakeSubsystem, FeedSubsystem *_feedSubsystem) : intakeSubsystem(_intakeSubsystem), feedSubsystem(_feedSubsystem)
 {
-    AddRequirements(subsystem);
+    AddRequirements(intakeSubsystem);
+    AddRequirements(feedSubsystem);
 }
 
 void OuttakeCommand::Execute() {
-    subsystem->Set(-1);
+    intakeSubsystem->Set(-1);
+    feedSubsystem->Set(-1);
 }
 
 void OuttakeCommand::End(bool interrupted) {
-    subsystem->Set(0);
+    intakeSubsystem->Set(-1);
+    feedSubsystem->Set(-1);
 }
