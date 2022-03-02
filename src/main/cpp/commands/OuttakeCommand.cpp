@@ -13,6 +13,6 @@ void OuttakeCommand::Execute() {
 }
 
 void OuttakeCommand::End(bool interrupted) {
-    intakeSubsystem->Set(-1);
-    feedSubsystem->Set(-1);
+    intakeSubsystem->Set(0);
+    feedSubsystem->Set(0);
 }

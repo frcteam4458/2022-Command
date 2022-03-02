@@ -33,6 +33,8 @@ const int SHOOTER_ENCDOER = 12; // uses ports 12, 13, 14, 15
 const int FIRST_SWITCH = 8;
 const int SECOND_SWITCH = 9;
 
+const int CLIMBER = 7;
+
 const int GYRO = 0;
 
 const int LEFT_ARM = 5;

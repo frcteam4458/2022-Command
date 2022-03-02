@@ -2,11 +2,10 @@
 
 #include "Constants.h"
 
-HangSubsystem::HangSubsystem() : leftArm{LEFT_ARM}, rightArm{RIGHT_ARM}
+HangSubsystem::HangSubsystem() : climber{CLIMBER}
 {}
 
 void HangSubsystem::Set(double set)
 {
-    leftArm.Set(set);
-    rightArm.Set(set);
+    climber.Set(set);
 }

@@ -12,7 +12,5 @@ public:
 
     void Set(double power);
 private:
-    frc::PWMSparkMax leftArm;
-    frc::PWMSparkMax rightArm;
-};
+    frc::PWMSparkMax climber;};
 #endif

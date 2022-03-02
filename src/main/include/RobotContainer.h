@@ -11,6 +11,7 @@
 #include "subsystems/IntakeSubsystem.h"
 #include "subsystems/FeedSubsystem.h"
 #include "subsystems/LimitSubsystem.h"
+#include "subsystems/LightSubsystem.h"
 
 #include "commands/AutoDrive.h"
 #include "commands/IntakeCommand.h"
@@ -21,6 +22,10 @@
 #include "commands/LimitWaitCommand.h"
 #include "commands/FlywheelWaitCommand.h"
 #include "commands/FireCommand.h"
+#include "commands/ClimbUpCommand.h"
+#include "commands/ClimbDownCommand.h"
+#include "commands/ClimbCommand.h"
+#include "commands/LightCommand.h"
 
 class RobotContainer
 {
@@ -39,7 +44,8 @@ private:
   IntakeSubsystem intakeSubsystem;
   FeedSubsystem feedSubsystem;
   LimitSubsystem limitSubsystem;
-
+  HangSubsystem hangSubsystem;
+  LightSubsystem lightSubsystem;
 
   // commands
   Drive teleop;
@@ -55,6 +61,10 @@ private:
   LimitWaitCommand limitWaitCommand;
   FlywheelWaitCommand flywheelWaitCommand;
   FireCommand fireCommand;
+  ClimbUpCommand climbUpCommand;
+  ClimbDownCommand climbDownCommand;
+  ClimbCommand climbCommand;
+  LightCommand lightCommand;
 
   void ConfigureButtonBindings();
 };

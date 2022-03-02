@@ -4,16 +4,14 @@
 
 #include <frc/smartdashboard/SmartDashboard.h>
 
-ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{8}, s_motor{SHOOTER}, s_encoder{encoder}
+ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{12}, s_motor{SHOOTER}, s_encoder{encoder}
 {
     encoder.SetDistancePerRotation(1);
 }
 
 void ShooterSubsystem::Periodic() {
-    frc::SmartDashboard::PutNumber("Shooter Encoder", encoder.GetDistance());
     frc::SmartDashboard::PutNumber("RPM", encoderRpm);
     frc::SmartDashboard::PutNumber("Target RPM", rpm);
-    frc::SmartDashboard::PutNumber("Flywheel Power", motor.Get());
     frc::SmartDashboard::PutNumber("Flywheel Power", motor.Get());
     encoderRpm = (encoder.GetDistance() - encoderPrev)/0.02*60;
 
@@ -28,8 +26,8 @@ void ShooterSubsystem::Periodic() {
 }
 
 void ShooterSubsystem::SimulationPeriodic() {
-    distance += motor.Get()*1.8; // so motor=1 makes 5000rpm
-    s_encoder.SetDistance(distance);
+    // distance += motor.Get()*1.8; // so motor=1 makes 5000rpm
+    // s_encoder.SetDistance(distance);
 }
 
 void ShooterSubsystem::Set(double power)

@@ -20,6 +20,11 @@
         "header": {
           "open": true
         }
+      },
+      "DutyCycleEncoder[8]": {
+        "header": {
+          "open": true
+        }
       }
     },
     "PWM Outputs": {
@@ -36,6 +41,7 @@
       "/LiveWindow/Ungrouped/DigitalInput[10]": "Digital Input",
       "/LiveWindow/Ungrouped/DigitalInput[11]": "Digital Input",
       "/LiveWindow/Ungrouped/DigitalInput[12]": "Digital Input",
+      "/LiveWindow/Ungrouped/DigitalInput[13]": "Digital Input",
       "/LiveWindow/Ungrouped/DigitalInput[1]": "Digital Input",
       "/LiveWindow/Ungrouped/DigitalInput[2]": "Digital Input",
       "/LiveWindow/Ungrouped/DigitalInput[3]": "Digital Input",

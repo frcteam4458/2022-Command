@@ -7,10 +7,12 @@
 #include "Global.h"
 
 #include <frc/DutyCycleEncoder.h>
+#include <wpi/PortForwarder.h>
 
 void Robot::RobotInit()
 {
   m_container.ShuffleBoard();
+  wpi::PortForwarder::GetInstance().Add(5800, "photonvision.local", 5800);
 }
 
 void Robot::RobotPeriodic()

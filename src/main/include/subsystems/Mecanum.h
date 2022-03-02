@@ -32,6 +32,8 @@ public:
 
   frc::Pose2d GetPose();
 
+  void SendTelemetry();
+
 private:
   frc::PWMSparkMax fl;
   frc::PWMSparkMax fr;

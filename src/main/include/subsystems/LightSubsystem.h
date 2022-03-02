@@ -12,6 +12,7 @@ public:
     LightSubsystem();
 
     void Set(double set);
+    void Periodic() override;
 private:
     frc::PWMSparkMax light;
 };
