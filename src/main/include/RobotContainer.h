@@ -12,6 +12,7 @@
 #include "subsystems/FeedSubsystem.h"
 #include "subsystems/LimitSubsystem.h"
 #include "subsystems/LightSubsystem.h"
+#include "subsystems/ServoSubsystem.h"
 
 #include "commands/AutoDrive.h"
 #include "commands/IntakeCommand.h"
@@ -21,11 +22,17 @@
 #include "commands/LimitCommand.h"
 #include "commands/LimitWaitCommand.h"
 #include "commands/FlywheelWaitCommand.h"
-#include "commands/FireCommand.h"
 #include "commands/ClimbUpCommand.h"
 #include "commands/ClimbDownCommand.h"
 #include "commands/ClimbCommand.h"
 #include "commands/LightCommand.h"
+#include "commands/ServoCommand.h"
+
+#include <frc2/command/SequentialCommandGroup.h>
+#include <frc2/command/ParallelRaceGroup.h>
+#include <frc2/command/ParallelCommandGroup.h>
+#include <frc2/command/ConditionalCommand.h>
+#include <frc2/command/InstantCommand.h>
 
 class RobotContainer
 {
@@ -46,6 +53,7 @@ private:
   LimitSubsystem limitSubsystem;
   HangSubsystem hangSubsystem;
   LightSubsystem lightSubsystem;
+  ServoSubsystem servoSubsystem;
 
   // commands
   Drive teleop;
@@ -60,12 +68,19 @@ private:
   LimitCommand limitCommand;
   LimitWaitCommand limitWaitCommand;
   FlywheelWaitCommand flywheelWaitCommand;
-  FireCommand fireCommand;
   ClimbUpCommand climbUpCommand;
   ClimbDownCommand climbDownCommand;
   ClimbCommand climbCommand;
   LightCommand lightCommand;
+  frc2::ParallelRaceGroup fireCommand;
+  frc2::SequentialCommandGroup autoCommand;
+  ServoCommand servoOpenCommand;
+  ServoCommand servoCloseCommand;
+
+  // frc2::ParallelRaceGroup fireCommand;
 
   void ConfigureButtonBindings();
+
+  int x =0;
 };
 #endif

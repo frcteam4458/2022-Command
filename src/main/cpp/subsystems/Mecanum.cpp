@@ -89,9 +89,9 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
     correction = -1;
   }
 
-  // correction = 0; // nullifies correction (or zero-ifies)
+  correction = 0; // nullifies correction (or zero-ifies)
 
-  correction *= (abs(gyro.GetYaw() - angle) * .1);
+  correction *= (abs(gyro.GetYaw() - angle))/40;
   // frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));

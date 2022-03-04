@@ -26,12 +26,14 @@ void Robot::DisabledPeriodic() {}
 
 void Robot::AutonomousInit()
 {
-  m_autonomousCommand = m_container.GetAutonomousCommand();
+  // m_autonomousCommand = m_container.GetAutonomousCommand();
 
-  if (m_autonomousCommand != nullptr) // just makes sure the autonomous exists
-  {
-    m_autonomousCommand->Schedule();
-  }
+  // if (m_autonomousCommand != nullptr) // just makes sure the autonomous exists
+  // {
+  //   m_autonomousCommand->Schedule();
+  // }
+
+  m_container.GetAutonomousCommand()->Schedule();
 }
 
 void Robot::AutonomousPeriodic() {}

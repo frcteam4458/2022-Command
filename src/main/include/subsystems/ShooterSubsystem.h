@@ -31,5 +31,6 @@ private:
   double encoderRpm = 0;
   double encoderPrev = 0;
   double distance = 0; // for sim
+  int c = 0;
 };
 #endif

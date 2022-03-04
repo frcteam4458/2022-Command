@@ -18,6 +18,7 @@ public:
     void Initialize() override;
     void Execute() override;
     bool IsFinished() override;
+    void End(bool interrupted) override;
 
 private:
     Mecanum *m_drive;

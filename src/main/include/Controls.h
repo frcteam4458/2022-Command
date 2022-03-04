@@ -26,4 +26,7 @@ frc2::JoystickButton climbUpButton{&thirdStick, 11};
 frc2::JoystickButton climbDownButton{&thirdStick, 10};
 
 frc2::JoystickButton lightButton{&controller, 2};
+
+frc2::JoystickButton servoCloseButton{&thirdStick, 8};
+frc2::JoystickButton servoOpenButton{&thirdStick, 9};
 #endif

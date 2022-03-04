@@ -25,6 +25,8 @@ private:
 
     frc::Joystick leftStick{0};
     frc::Joystick rightStick{1};
+    frc::Joystick secondPlayer{2};
+
 
     // frc::PWMSparkMax fl{0};
     // frc::PWMSparkMax fr{1};

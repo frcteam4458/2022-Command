@@ -9,11 +9,15 @@ void AutoDrive::Initialize() {}
 
 void AutoDrive::Execute()
 {
-	// m_drive->Drive(1_mps, 0_mps, units::radians_per_second_t(0.5f));
-	// m_drive->DriveVoltages()
+	m_drive->DriveVoltages(-8_V, -8_V, -8_V, -8_V);
 }
 
 bool AutoDrive::IsFinished()
 {
-	return m_drive->GetPose().X() >= 2_m;
+	return false;
+	// return m_drive->GetPose().X() >= 2_m;
+}
+
+void AutoDrive::End(bool interrupted) {
+	m_drive->DriveVoltages(0_V, 0_V, 0_V, 0_V);
 }
