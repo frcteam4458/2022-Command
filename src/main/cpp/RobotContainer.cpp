@@ -54,6 +54,7 @@ void RobotContainer::ConfigureButtonBindings()
   // fireButton.WhenPressed(std::move(fireCommand));
   fireButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{frc2::WaitCommand{units::second_t{0.1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{1}}}, frc2::WaitCommand{units::second_t{1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{0.5}}}}});
   climbUpButton.WhenHeld(frc2::SequentialCommandGroup{std::move(servoOpenCommand), frc2::WaitCommand{0.1_s}, std::move(climbUpCommand)});
+  ;
   // climbDownButton.WhenHeld(frc2::ConditionalCommand{std::move(climbDownCommand), frc2::WaitCommand{0_s}, [this]() {return servoSubsystem.Get() == 0.5;}}); // disable down when servo is at 1.0
   climbDownButton.WhenHeld(frc2::SequentialCommandGroup{std::move(servoCloseCommand), frc2::WaitCommand{0.1_s}, std::move(climbDownCommand)});
   lightButton.ToggleWhenPressed(std::move(lightCommand));
