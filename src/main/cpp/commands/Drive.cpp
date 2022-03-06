@@ -38,7 +38,7 @@ void Drive::Execute()
 	// if(rx < 0.05 && rx > -0.05) rx = 0;
 	m_drive->DriveJoystick(-leftStick.GetX(), leftStick.GetY()/2, xboxRx, 0.00); // no deadzone
 
-	// if(secondPlayer.GetRawButtonPressed(8)) m_drive->ResetAngle();
+	if(secondPlayer.GetRawButtonPressed(8)) m_drive->ResetAngle();
 }
 
 void Drive::End(bool interrupted)

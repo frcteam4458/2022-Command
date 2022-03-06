@@ -46,14 +46,19 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   // wpi::outs() << "sfidsjsdoi";
   // do i invert the encoders? not sure
   // set distanceperpulse
+
+  flEncoder.SetDistancePerPulse(0.23938936/4000.0);
+  frEncoder.SetDistancePerPulse(0.23938936/4000.0);
+  blEncoder.SetDistancePerPulse(0.23938936/4000.0);
+  brEncoder.SetDistancePerPulse(0.23938936/4000.0);
   
   gyro.SetYaw(0.0);
 }
 
 void Mecanum::Periodic()
 {
-
-  // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, wheelSpeeds);
+  
+  // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
 
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
   // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());

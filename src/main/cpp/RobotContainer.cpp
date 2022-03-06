@@ -32,7 +32,7 @@ RobotContainer::RobotContainer() : driveSubsystem{},
                                    flywheelWaitCommand{&shooterSubsystem},
                                   //  fireCommand{&limitSubsystem, intakeCommand, shooterFastCommand, feedCommand, limitWaitCommand, flywheelWaitCommand},
                                    climbUpCommand{&hangSubsystem},
-                                   climbDownCommand{&hangSubsystem},
+                                   climbDownCommand{&hangSubsystem}, // lock it from going down at 1.0x
                                    climbCommand{&hangSubsystem},
                                    lightCommand{&lightSubsystem},
                                    fireCommand{std::move(intakeCommand), frc2::ConditionalCommand{frc2::SequentialCommandGroup{frc2::WaitCommand{0.5_s}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{0.5_s}}, frc2::WaitCommand{1_s}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{0.5_s}}}, frc2::SequentialCommandGroup{frc2::WaitCommand{0.25_s}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{0.5_s}}}, [this]() { return limitSubsystem.IsBothPressed(); } }},
@@ -51,11 +51,11 @@ void RobotContainer::ConfigureButtonBindings()
   intakeButton.ToggleWhenPressed(std::move(intakeCommand));
   outtakeButton.WhenHeld(std::move(outtakeCommand));
   feedButton.WhenHeld(std::move(feedCommand));
-  fireButton.WhenPressed(std::move(fireCommand));
-  // fireButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{frc2::WaitCommand{units::second_t{0.1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{1}}}, frc2::WaitCommand{units::second_t{1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{0.5}}}}});
-  climbUpButton.WhenHeld(std::move(climbUpCommand));
+  // fireButton.WhenPressed(std::move(fireCommand));
+  fireButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{frc2::WaitCommand{units::second_t{0.1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{1}}}, frc2::WaitCommand{units::second_t{1}}, frc2::ParallelRaceGroup{std::move(feedCommand), frc2::WaitCommand{units::second_t{0.5}}}}});
+  climbUpButton.WhenHeld(frc2::SequentialCommandGroup{std::move(servoOpenCommand), frc2::WaitCommand{0.1_s}, std::move(climbUpCommand)});
   // climbDownButton.WhenHeld(frc2::ConditionalCommand{std::move(climbDownCommand), frc2::WaitCommand{0_s}, [this]() {return servoSubsystem.Get() == 0.5;}}); // disable down when servo is at 1.0
-  climbDownButton.WhenHeld(std::move(climbDownCommand))
+  climbDownButton.WhenHeld(frc2::SequentialCommandGroup{std::move(servoCloseCommand), frc2::WaitCommand{0.1_s}, std::move(climbDownCommand)});
   lightButton.ToggleWhenPressed(std::move(lightCommand));
   
   servoCloseButton.WhenPressed(std::move(servoCloseCommand));

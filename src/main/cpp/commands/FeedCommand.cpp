@@ -19,12 +19,13 @@ void FeedCommand::Initialize() {
 
 void FeedCommand::Execute() {
     subsystem->Set(1);
-
+    frc::SmartDashboard::PutNumber("feeder", 1);
 }
 
 
 void FeedCommand::End(bool interrupted) {
     subsystem->Set(0);
+    frc::SmartDashboard::PutNumber("feeder", 0);
 }
 
 bool FeedCommand::IsFinished() {
