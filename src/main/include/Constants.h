@@ -54,7 +54,7 @@ const frc::Translation2d BL{-.254_m, 0.305_m};
 const frc::Translation2d BR{-.254_m, -0.305_m};
 
 const double CLIMBER_BOTTOM = 0;
-const double CLIMBER_TOP = 1000;
+const double CLIMBER_TOP = 7;
 
 const double fireRotations = 1;
 const double fireTwiceRotations = 2;

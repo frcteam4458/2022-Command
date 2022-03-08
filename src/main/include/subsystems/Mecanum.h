@@ -59,7 +59,6 @@ private:
 
   frc::MecanumDriveKinematics m_kinematics;
   frc::MecanumDriveOdometry m_odometry;
-  frc::MecanumDriveOdometry m_predictedOdometry;
 
   frc::Pose2d pose;
 

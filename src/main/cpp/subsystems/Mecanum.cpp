@@ -35,7 +35,6 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
 
                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
                      m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
-                     m_predictedOdometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
                      pose{0_m, 0_m, 0_rad}
 {
   
@@ -58,7 +57,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
 void Mecanum::Periodic()
 {
   
-  // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
+  pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
 
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
   // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
@@ -84,8 +83,6 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   frc::MecanumDriveWheelSpeeds wheelSpeeds = m_kinematics.ToWheelSpeeds(speeds);
   
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
-  angle -= (omega.value()/40)*(180/PI);
-
   double correction = 0;
 
   if(gyro.GetYaw() < angle) { // too far right
@@ -94,6 +91,7 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
     correction = -1;
   }
 
+  if(abs(omega.value()) > 0.005)
   correction = 0; // nullifies correction (or zero-ifies)
 
   correction *= (abs(gyro.GetYaw() - angle))/40;
@@ -127,6 +125,10 @@ void Mecanum::DriveJoystick(float lx, float ly, float rx, float deadzone)
   if(abs(lx) < deadzone && abs(ly) < deadzone && abs(rx) < deadzone) {
     Mecanum::DriveVoltages(0_V, 0_V, 0_V, 0_V);
     return;
+  }
+
+  if(rx < 0.05) {
+    rx = 0;
   }
 
   Mecanum::Drive(units::meters_per_second_t{lx * MAX_SPEED}, units::meters_per_second_t{ly * MAX_SPEED}, units::radians_per_second_t{rx * MAX_ROT_SPEED});
@@ -171,8 +173,8 @@ void Mecanum::ResetAngle() {
 
 frc::Pose2d Mecanum::GetPose()
 {
-  // return m_odometry.GetPose();
-  return frc::Pose2d{0_m, 0_m, 0_rad};
+  return m_odometry.GetPose();
+  // return frc::Pose2d{0_m, 0_m, 0_rad};
 }
 
 void Mecanum::SendTelemetry() {

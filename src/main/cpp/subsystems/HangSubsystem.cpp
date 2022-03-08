@@ -11,12 +11,11 @@ HangSubsystem::HangSubsystem() : climber{CLIMBER}, encoder{ARM_ENCODER}
 void HangSubsystem::Set(double set)
 {
     power = set;
-    climber.Set(power);
+    // climber.Set(power);
 }
 
 void HangSubsystem::Periodic() {
     frc::SmartDashboard::PutNumber("Arm Encoder", encoder.GetDistance());
-    return;
     double power = HangSubsystem::power;
 
     if(power > 0) {
