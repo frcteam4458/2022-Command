@@ -18,5 +18,6 @@ private:
     frc::PWMSparkMax climber;
     frc::DutyCycleEncoder encoder;
     double power = 0;
+    bool reset = false;
 };
 #endif

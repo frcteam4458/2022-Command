@@ -25,6 +25,10 @@ public:
   void DriveJoystick(float lx, float ly, float rx, float deadzone);
   void DriveVoltages(units::volt_t fl, units::volt_t fr, units::volt_t bl, units::volt_t br);
 
+  void DriveStraight(double power);
+  void SetAngle(double angle);
+  void Turn(double angle);
+
   float GetAngle();
   units::degree_t GetAngleDegrees();
   units::radian_t GetAngleRadians();

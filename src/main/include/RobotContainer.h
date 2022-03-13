@@ -63,6 +63,7 @@ private:
   ShooterCommand shooterFastCommand;
   ShooterCommand shooterSlowCommand;
   ShooterCommand shooterStopCommand;
+  ShooterCommand autoShootCommand;
   FeedCommand feedCommand;
   FeedCommand feedTwiceCommand;
   LimitCommand limitCommand;

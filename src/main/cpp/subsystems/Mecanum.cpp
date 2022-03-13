@@ -53,25 +53,28 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   
   gyro.SetYaw(0.0);
 }
-
+int test = 0;
 void Mecanum::Periodic()
 {
-  
-  pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
+  test++;
+  gyro.SetYaw(2);
+  frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
+  frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
+  frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
+
+  frc::SmartDashboard::PutNumber("test", test);
+  // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
 
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
-  // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
-  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
-  // frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
-  // frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
   // frc::SmartDashboard::PutNumber("Front Left Encoder: ", flEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
-  // frc::SmartDashboard::PutNumber("Front Left", fl.Get());
-  // frc::SmartDashboard::PutNumber("Front Right", fr.Get());
-  // frc::SmartDashboard::PutNumber("Back Left", bl.Get());
-  // frc::SmartDashboard::PutNumber("Back Right", br.Get());
+  frc::SmartDashboard::PutNumber("Front Left", fl.Get());
+  frc::SmartDashboard::PutNumber("Front Right", fr.Get());
+  frc::SmartDashboard::PutNumber("Back Left", bl.Get());
+  frc::SmartDashboard::PutNumber("Back Right", br.Get());
 // m_predictedOdometry.GetPose().Rotation
 }
 
@@ -85,16 +88,20 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   double correction = 0;
 
-  if(gyro.GetYaw() < angle) { // too far right
+  if(gyro.GetPitch() < angle) { // too far right
     correction = 1;
   } else { // too far left
     correction = -1;
   }
 
-  if(abs(omega.value()) > 0.005)
-  correction = 0; // nullifies correction (or zero-ifies)
+  correction = 0;
+  // frc::SmartDashboard::PutNumber("omega", omega.value());
 
-  correction *= (abs(gyro.GetYaw() - angle))/40;
+  if(abs(omega.value()) > 0.005) {
+    correction = 0; // nullifies correction (or zero-ifies)
+    angle = GetAngle();
+  }
+  correction *= (abs(GetAngle() - angle))/40;
   // frc::SmartDashboard::PutNumber("FL: ", std::clamp(wheelSpeeds.frontLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("FR: ", std::clamp(wheelSpeeds.frontRight.value() - correction / MAX_SPEED.value(), -1.0, 1.0));
   // frc::SmartDashboard::PutNumber("BL: ", std::clamp(wheelSpeeds.rearLeft.value() + correction / MAX_SPEED.value(), -1.0, 1.0));
@@ -112,6 +119,29 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   // SendTelemetry();
 }
 
+double straightAngle = 0;
+
+void Mecanum::DriveStraight(double power) {
+  double correction = (gyro.GetPitch() - straightAngle) * 0.025;
+
+  DriveVoltages(units::volt_t{power + correction}, units::volt_t{power - correction}, units::volt_t{power + correction}, units::volt_t{power - correction});
+
+  straightAngle = gyro.GetPitch();
+}
+
+void Mecanum::SetAngle(double angle) {
+  double correction = (gyro.GetPitch() - angle) * 0.1;
+
+  DriveVoltages(units::volt_t{correction}, units::volt_t{-correction}, units::volt_t{correction}, units::volt_t{-correction});
+
+}
+
+void Mecanum::Turn(double angle) {
+
+}
+
+
+
 void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t _bl, units::volt_t _br)
 {
   fl.SetVoltage(_fl);
@@ -122,12 +152,13 @@ void Mecanum::DriveVoltages(units::volt_t _fl, units::volt_t _fr, units::volt_t 
 
 void Mecanum::DriveJoystick(float lx, float ly, float rx, float deadzone)
 {
+  
   if(abs(lx) < deadzone && abs(ly) < deadzone && abs(rx) < deadzone) {
     Mecanum::DriveVoltages(0_V, 0_V, 0_V, 0_V);
     return;
   }
 
-  if(rx < 0.05) {
+  if(abs(rx) < 0.05) {
     rx = 0;
   }
 
@@ -148,7 +179,7 @@ void Mecanum::DriveJoystick(float lx, float ly, float rx, float deadzone)
 // // counterclockwise, starting from the right. same as in math.
 float Mecanum::GetAngle()
 {
-  float gyroAngle = gyro.GetYaw();
+  float gyroAngle = gyro.GetPitch();
   // float gyroAngle = 0;
   // extern float gyroOffset;
   // gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
@@ -173,8 +204,8 @@ void Mecanum::ResetAngle() {
 
 frc::Pose2d Mecanum::GetPose()
 {
-  return m_odometry.GetPose();
-  // return frc::Pose2d{0_m, 0_m, 0_rad};
+  // return m_odometry.GetPose();
+  return frc::Pose2d{0_m, 0_m, 0_rad};
 }
 
 void Mecanum::SendTelemetry() {

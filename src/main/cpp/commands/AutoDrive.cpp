@@ -9,7 +9,7 @@ void AutoDrive::Initialize() {}
 
 void AutoDrive::Execute()
 {
-	m_drive->DriveVoltages(-8_V, -8_V, -8_V, -8_V);
+	m_drive->DriveVoltages(8_V, 8_V, 8_V, 8_V);
 }
 
 bool AutoDrive::IsFinished()
