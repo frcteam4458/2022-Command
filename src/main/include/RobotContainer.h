@@ -41,6 +41,7 @@ public:
 
   frc2::Command *GetAutonomousCommand();
   frc2::Command *GetTeleopCommand();
+  frc2::Command *GetLightCommand();
   void ShuffleBoard();
 
 private:
@@ -63,6 +64,7 @@ private:
   ShooterCommand shooterFastCommand;
   ShooterCommand shooterSlowCommand;
   ShooterCommand shooterStopCommand;
+  ShooterCommand shooterReverseCommand;
   ShooterCommand autoShootCommand;
   FeedCommand feedCommand;
   FeedCommand feedTwiceCommand;

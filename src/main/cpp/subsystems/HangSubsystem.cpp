@@ -18,7 +18,7 @@ void HangSubsystem::Periodic() {
     if(!reset) 
     encoder.Reset();
     reset = true;
-    frc::SmartDashboard::PutNumber("Arm Encoder", encoder.GetDistance());
+    // frc::SmartDashboard::PutNumber("Arm Encoder", encoder.GetDistance());
     double power = HangSubsystem::power;
 
     if(climber.Get() < 0 && encoder.GetDistance() < CLIMBER_BOTTOM) {

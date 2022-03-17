@@ -10,10 +10,10 @@ ShooterSubsystem::ShooterSubsystem() : motor{SHOOTER}, encoder{12}, s_motor{SHOO
 }
 
 void ShooterSubsystem::Periodic() {
-frc::SmartDashboard::PutNumber("Shooter Encoder", encoder.GetDistance());   
-    frc::SmartDashboard::PutNumber("RPM", encoderRpm);
-    frc::SmartDashboard::PutNumber("Target RPM", rpm);
-    frc::SmartDashboard::PutNumber("Flywheel Power", motor.Get());
+    // frc::SmartDashboard::PutNumber("Shooter Encoder", encoder.GetDistance());   
+    // frc::SmartDashboard::PutNumber("RPM", encoderRpm);
+    // frc::SmartDashboard::PutNumber("Target RPM", rpm);
+    // frc::SmartDashboard::PutNumber("Flywheel Power", motor.Get());
       
     if(c % 20 == 0) {
             c++;

@@ -59,7 +59,7 @@ private:
   frc::Encoder blEncoder;
   frc::Encoder brEncoder;
 
-  ctre::phoenix::sensors::PigeonIMU gyro;
+  // ctre::phoenix::sensors::PigeonIMU gyro;
 
   frc::MecanumDriveKinematics m_kinematics;
   frc::MecanumDriveOdometry m_odometry;

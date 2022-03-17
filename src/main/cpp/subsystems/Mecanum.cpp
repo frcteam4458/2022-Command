@@ -31,7 +31,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
                      blEncoder{BACK_LEFT_ENCODER[0], BACK_LEFT_ENCODER[1]},
                      brEncoder{BACK_RIGHT_ENCODER[0], BACK_RIGHT_ENCODER[1]},
 
-                     gyro{0},
+                    //  gyro{0},
 
                      m_kinematics{FL, FR, BL, BR}, // these refer to physical locations set in Constants.h
                      m_odometry{m_kinematics, units::radian_t(0_rad), frc::Pose2d{0_m, 0_m, 0_rad}},
@@ -40,7 +40,7 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   
   fl.SetInverted(true);
   bl.SetInverted(true);
-  fr.SetInverted(true);
+  // fr.SetInverted(true);
   ResetAngle();
   // wpi::outs() << "sfidsjsdoi";
   // do i invert the encoders? not sure
@@ -51,19 +51,19 @@ Mecanum::Mecanum() : fl{FRONT_LEFT}, s_fl{FRONT_LEFT},
   blEncoder.SetDistancePerPulse(0.23938936/4000.0);
   brEncoder.SetDistancePerPulse(0.23938936/4000.0);
   
-  gyro.SetYaw(0.0);
+  // gyro.SetYaw(0.0);
 }
 int test = 0;
 void Mecanum::Periodic()
 {
-  test++;
-  gyro.SetYaw(2);
-  frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
-  frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
-  frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
-  frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
+  // test++;
+  // gyro.SetYaw(2);
+  // frc::SmartDashboard::PutNumber("Yaw: ", gyro.GetYaw());
+  // frc::SmartDashboard::PutNumber("GetAngleDegrees(): ", GetAngleDegrees().value());
+  // frc::SmartDashboard::PutNumber("Pitch: ", gyro.GetPitch());
+  // frc::SmartDashboard::PutNumber("Roll: ", gyro.GetRoll());
 
-  frc::SmartDashboard::PutNumber("test", test);
+  // frc::SmartDashboard::PutNumber("test", test);
   // pose = m_odometry.Update(frc::Rotation2d{GetAngleDegrees()}, frc::MecanumDriveWheelSpeeds{units::meter_t{flEncoder.GetRate()}, units::meter_t{frEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}, units::meter_t{brEncoder.GetRate()}});
 
   // frc::MecanumDrive s_drive{s_fl, s_bl, s_fr, s_bl};
@@ -71,10 +71,10 @@ void Mecanum::Periodic()
   // frc::SmartDashboard::PutNumber("Front Right Encoder: ", frEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Left Encoder: ", blEncoder.GetDistance());
   // frc::SmartDashboard::PutNumber("Back Right Encoder: ", brEncoder.GetDistance());
-  frc::SmartDashboard::PutNumber("Front Left", fl.Get());
-  frc::SmartDashboard::PutNumber("Front Right", fr.Get());
-  frc::SmartDashboard::PutNumber("Back Left", bl.Get());
-  frc::SmartDashboard::PutNumber("Back Right", br.Get());
+  // frc::SmartDashboard::PutNumber("Front Left", fl.Get());
+  // frc::SmartDashboard::PutNumber("Front Right", fr.Get());
+  // frc::SmartDashboard::PutNumber("Back Left", bl.Get());
+  // frc::SmartDashboard::PutNumber("Back Right", br.Get());
 // m_predictedOdometry.GetPose().Rotation
 }
 
@@ -88,11 +88,11 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
   wheelSpeeds.Desaturate(MAX_SPEED); // this makes sure nothing is over MAX_SPEED
   double correction = 0;
 
-  if(gyro.GetPitch() < angle) { // too far right
-    correction = 1;
-  } else { // too far left
-    correction = -1;
-  }
+  // if(gyro.GetPitch() < angle) { // too far right
+  //   correction = 1;
+  // } else { // too far left
+  //   correction = -1;
+  // }
 
   correction = 0;
   // frc::SmartDashboard::PutNumber("omega", omega.value());
@@ -122,17 +122,17 @@ void Mecanum::Drive(units::meters_per_second_t vx, units::meters_per_second_t vy
 double straightAngle = 0;
 
 void Mecanum::DriveStraight(double power) {
-  double correction = (gyro.GetPitch() - straightAngle) * 0.025;
+  // double correction = (gyro.GetPitch() - straightAngle) * 0.025;
 
-  DriveVoltages(units::volt_t{power + correction}, units::volt_t{power - correction}, units::volt_t{power + correction}, units::volt_t{power - correction});
+  // DriveVoltages(units::volt_t{power + correction}, units::volt_t{power - correction}, units::volt_t{power + correction}, units::volt_t{power - correction});
 
-  straightAngle = gyro.GetPitch();
+  // straightAngle = gyro.GetPitch();
 }
 
 void Mecanum::SetAngle(double angle) {
-  double correction = (gyro.GetPitch() - angle) * 0.1;
+  // double correction = (gyro.GetPitch() - angle) * 0.1;
 
-  DriveVoltages(units::volt_t{correction}, units::volt_t{-correction}, units::volt_t{correction}, units::volt_t{-correction});
+  // DriveVoltages(units::volt_t{correction}, units::volt_t{-correction}, units::volt_t{correction}, units::volt_t{-correction});
 
 }
 
@@ -179,8 +179,8 @@ void Mecanum::DriveJoystick(float lx, float ly, float rx, float deadzone)
 // // counterclockwise, starting from the right. same as in math.
 float Mecanum::GetAngle()
 {
-  float gyroAngle = gyro.GetPitch();
-  // float gyroAngle = 0;
+  // float gyroAngle = gyro.GetPitch();
+  float gyroAngle = 0;
   // extern float gyroOffset;
   // gyroAngle = std::abs(std::fmod((-gyroAngle + 90) + gyroOffset, 360)); // this converts from clockwise starting at north to counterclockwise starting at east, which is more
   return gyroAngle;
@@ -198,7 +198,7 @@ units::radian_t Mecanum::GetAngleRadians()
 }
 
 void Mecanum::ResetAngle() {
-  gyro.SetYaw(0);
+  // gyro.SetYaw(0);
   angle = 0;
 }
 
@@ -215,10 +215,10 @@ void Mecanum::SendTelemetry() {
                                            units::meters_per_second_t(brEncoder.GetRate())};
   
   frc::MecanumDrive drive{fl, bl, fr, bl};
-  frc::Shuffleboard::GetTab("Telemetry").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive).WithPosition(0, 2);
+  // frc::Shuffleboard::GetTab("Telemetery").Add("Mecanum Drivebase", drive).WithWidget(frc::BuiltInWidgets::kMecanumDrive).WithPosition(0, 2);
 
-  frc::Shuffleboard::GetTab("Telemetry").Add("FL Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(0, 0);
-  frc::Shuffleboard::GetTab("Telemetry").Add("FR Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(2, 0);
-  frc::Shuffleboard::GetTab("Telemetry").Add("BL Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(0, 1);
-  frc::Shuffleboard::GetTab("Telemetry").Add("BR Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(2, 1);
+  // frc::Shuffleboard::GetTab("Telemetry").Add("FL Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(0, 0);
+  // frc::Shuffleboard::GetTab("Telemetry").Add("FR Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(2, 0);
+  // frc::Shuffleboard::GetTab("Telemetry").Add("BL Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(0, 1);
+  // frc::Shuffleboard::GetTab("Telemetry").Add("BR Encoder", flEncoder).WithWidget(frc::BuiltInWidgets::kEncoder).WithPosition(2, 1);
 }

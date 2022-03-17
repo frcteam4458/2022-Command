@@ -22,7 +22,7 @@ void Drive::Execute()
 {
 	lx = leftStick.GetX();
 	ly = leftStick.GetY();
-	rx = rightStick.GetX();
+	// rx = rightStick.GetX();
 	xboxRx = xboxController.GetRawAxis(2);
 
 	lx *= 0.75;

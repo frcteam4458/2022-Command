@@ -1,6 +1,7 @@
 #include "subsystems/LimitSubsystem.h"
 #include "Constants.h"
 #include <frc/smartdashboard/SmartDashboard.h>
+#include <frc/shuffleboard/Shuffleboard.h>
 
 LimitSubsystem::LimitSubsystem() {}
 
@@ -20,6 +21,8 @@ bool LimitSubsystem::IsBothPressed() {
 }
 
 void LimitSubsystem::Periodic() {
-    frc::SmartDashboard::PutBoolean("First Switch", IsFirstPressed());
-    frc::SmartDashboard::PutBoolean("Second Switch", IsSecondPressed());
+    bool first = IsFirstPressed();
+    bool second = IsFirstPressed();
+    // frc::Shuffleboard::GetTab("Telemetry").Add("First Switch", first).WithWidget(frc::BuiltInWidgets::kBooleanBox);
+    // frc::Shuffleboard::GetTab("Telemetry").Add("Second Switch", second).WithWidget(frc::BuiltInWidgets::kBooleanBox);
 }

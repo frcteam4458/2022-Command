@@ -14,5 +14,5 @@ void FireCommand::Execute() {
 }
 
 void FireCommand::End(bool interrupted) {
-    frc::SmartDashboard::PutBoolean("Firing over", true);
+    // frc::SmartDashboard::PutBoolean("Firing over", true);
 }
