@@ -27,8 +27,9 @@ void Drive::Execute()
 
 	lx *= 0.75;
 	ly *= 0.75;
+	xboxRx *= 0.75;
 
-	if(xboxController.GetRawButton(10)) xboxRx *= 0.1; 
+	if(xboxController.GetRawButton(6)) xboxRx *= 0.1; 
 	else xboxRx *= 0.3;
 	// lx = std::pow(lx, 3.0);
 	// ly = std::pow(ly, 3.0);

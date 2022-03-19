@@ -23,8 +23,8 @@ RobotContainer::RobotContainer() : driveSubsystem{},
                                    intakeCommand{&intakeSubsystem},
                                    outtakeCommand{&intakeSubsystem, &feedSubsystem},
                                    shooterFastCommand{&shooterSubsystem, 1.0f},
-                                   shooterSlowCommand{&shooterSubsystem, 0.7f},
-                                   shooterStopCommand{&shooterSubsystem, 0.0f},
+                                   shooterSlowCommand{&shooterSubsystem, 0.725f},
+                                   shooterStopCommand{&shooterSubsystem, 0.725f},
                                    autoShootCommand{&shooterSubsystem, 1.0f},
                                    shooterReverseCommand{&shooterSubsystem, -1.0f},
                                    feedCommand{&feedSubsystem, fireRotations},
@@ -56,8 +56,8 @@ void RobotContainer::ConfigureButtonBindings()
   feedButton.WhenHeld(std::move(feedCommand));
   // fireButton.WhenPressed(std::move(fireCommand));
   // fireButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{frc2::WaitCommand{0.1_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{.5_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
-  flywheelStopButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{std::move(shooterSlowCommand), frc2::WaitCommand{5_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1_s}, std::move(feedCommand).WithTimeout(0.5_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
-  flywheelSlowButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{std::move(shooterFastCommand), frc2::WaitCommand{5_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1.5_s}, std::move(feedCommand).WithTimeout(0.5_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
+  flywheelStopButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{std::move(shooterSlowCommand), frc2::WaitCommand{0_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1_s}, std::move(feedCommand).WithTimeout(0.5_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
+  flywheelSlowButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{std::move(shooterFastCommand), frc2::WaitCommand{2_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1.5_s}, std::move(feedCommand).WithTimeout(0.5_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
   flywheelStopButton.WhenPressed(frc2::ParallelRaceGroup{std::move(intakeCommand), frc2::SequentialCommandGroup{std::move(shooterSlowCommand), frc2::WaitCommand{2_s}, std::move(feedCommand).WithTimeout(0.3_s), frc2::WaitCommand{1_s}, std::move(feedCommand).WithTimeout(0.5_s), frc2::WaitCommand{1_s}, std::move(shooterStopCommand)}});
   climbUpButton.WhenHeld(frc2::SequentialCommandGroup{std::move(servoOpenCommand), frc2::WaitCommand{0.1_s}, std::move(climbUpCommand)});
   // climbDownButton.WhenHeld(frc2::ConditionalCommand{std::move(climbDownCommand), frc2::WaitCommand{0_s}, [this]() {return servoSubsystem.Get() == 0.5;}}); // disable down when servo is at 1.0
@@ -86,6 +86,10 @@ frc2::Command *RobotContainer::GetTeleopCommand()
 
 frc2::Command *RobotContainer::GetLightCommand() {
   return &lightCommand;
+}
+
+frc2::Command *RobotContainer::GetShooterIdleCommand() {
+  return &shooterStopCommand;
 }
 
 void RobotContainer::ShuffleBoard()

@@ -9,10 +9,14 @@
 #include <frc/DutyCycleEncoder.h>
 #include <wpi/PortForwarder.h>
 
+#include <frc/shuffleboard/Shuffleboard.h>
+
 void Robot::RobotInit()
 {
   m_container.ShuffleBoard();
   wpi::PortForwarder::GetInstance().Add(5800, "photonvision.local", 5800);
+
+  
 }
 
 void Robot::RobotPeriodic()
@@ -46,12 +50,14 @@ void Robot::TeleopInit()
     m_autonomousCommand = nullptr;
   }
   m_container.GetTeleopCommand()->Schedule();
-  // m_container.GetLightCommand()->Schedule();
+  m_container.GetShooterIdleCommand()->Schedule();
+  m_container.GetLightCommand()->Schedule();
+
+  
 }
 
 void Robot::TeleopPeriodic()
 {
-  
 }
 
 

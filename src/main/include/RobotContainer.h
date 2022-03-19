@@ -42,6 +42,7 @@ public:
   frc2::Command *GetAutonomousCommand();
   frc2::Command *GetTeleopCommand();
   frc2::Command *GetLightCommand();
+  frc2::Command *GetShooterIdleCommand();
   void ShuffleBoard();
 
 private:

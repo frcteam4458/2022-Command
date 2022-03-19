@@ -3,7 +3,16 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 
-LimitSubsystem::LimitSubsystem() {}
+#include <networktables/NetworkTableEntry.h>
+
+nt::NetworkTableEntry firstSwitch;
+nt::NetworkTableEntry secondSwitch;
+
+LimitSubsystem::LimitSubsystem() {
+    
+    firstSwitch = frc::Shuffleboard::GetTab("Telemetry").Add("First Switch", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+    secondSwitch = frc::Shuffleboard::GetTab("Telemetry").Add("Second Switch", false).WithWidget(frc::BuiltInWidgets::kBooleanBox).GetEntry();
+}
 
 bool LimitSubsystem::IsFirstPressed() {
     return !first.Get();
@@ -22,7 +31,8 @@ bool LimitSubsystem::IsBothPressed() {
 
 void LimitSubsystem::Periodic() {
     bool first = IsFirstPressed();
-    bool second = IsFirstPressed();
-    // frc::Shuffleboard::GetTab("Telemetry").Add("First Switch", first).WithWidget(frc::BuiltInWidgets::kBooleanBox);
-    // frc::Shuffleboard::GetTab("Telemetry").Add("Second Switch", second).WithWidget(frc::BuiltInWidgets::kBooleanBox);
+    bool second = IsSecondPressed();
+    
+    firstSwitch.SetBoolean(first);
+    secondSwitch.SetBoolean(second);
 }
